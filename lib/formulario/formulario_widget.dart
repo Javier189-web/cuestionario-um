@@ -112,7 +112,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 .secondaryBackground,
                           ),
                           child: Text(
-                            'Este formulario consta de cinco opciones de respuesta que van desde \"Totalmente en desacuerdo\" hasta \"Totalmente de acuerdo\" representadas por los números del 1 al 5.',
+                            'Este formulario consta de cinco opciones de respuesta que van desde \"Totalmente en desacuerdo\" hasta \"Totalmente de acuerdo\" representadas por los números del 1 al 5..',
                             textAlign: TextAlign.justify,
                             style: FlutterFlowTheme.of(context).bodyMedium,
                           ),
