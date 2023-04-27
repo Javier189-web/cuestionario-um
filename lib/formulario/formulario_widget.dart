@@ -171,6 +171,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                               mainAxisSize: MainAxisSize.max,
                                               mainAxisAlignment:
                                                   MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: List.generate(
                                                   preguntas.length,
                                                   (preguntasIndex) {
@@ -190,8 +192,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                       },
                                     ),
                                     Align(
-                                      alignment:
-                                          AlignmentDirectional(1.01, 0.0),
+                                      alignment: AlignmentDirectional(1.0, 0.0),
                                       child: FutureBuilder<ApiCallResponse>(
                                         future: PreguntasCall.call(
                                           areaId: widget.codigoqr,
@@ -231,16 +232,352 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                 mainAxisAlignment:
                                                     MainAxisAlignment
                                                         .spaceAround,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: List.generate(
                                                     pregunta.length,
                                                     (preguntaIndex) {
                                                   final preguntaItem =
                                                       pregunta[preguntaIndex];
-                                                  return Text(
-                                                    'Hello World',
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
+                                                  return Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                    height: 100.0,
+                                                    decoration: BoxDecoration(
+                                                      color: FlutterFlowTheme
+                                                              .of(context)
+                                                          .secondaryBackground,
+                                                    ),
+                                                    child: Row(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      children: [
+                                                        Expanded(
+                                                          child: Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                            ),
+                                                            child:
+                                                                CheckboxListTile(
+                                                              value: _model
+                                                                      .checkboxListTileValueMap1[
+                                                                  preguntaItem] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxListTileValueMap1[
+                                                                            preguntaItem] =
+                                                                        newValue!);
+                                                              },
+                                                              title: Text(
+                                                                '1',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily,
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                    ),
+                                                              ),
+                                                              tileColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              dense: false,
+                                                              controlAffinity:
+                                                                  ListTileControlAffinity
+                                                                      .trailing,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                            ),
+                                                            child:
+                                                                CheckboxListTile(
+                                                              value: _model
+                                                                      .checkboxListTileValueMap2[
+                                                                  preguntaItem] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxListTileValueMap2[
+                                                                            preguntaItem] =
+                                                                        newValue!);
+                                                              },
+                                                              title: Text(
+                                                                '2',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily,
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                    ),
+                                                              ),
+                                                              tileColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              dense: false,
+                                                              controlAffinity:
+                                                                  ListTileControlAffinity
+                                                                      .trailing,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                            ),
+                                                            child:
+                                                                CheckboxListTile(
+                                                              value: _model
+                                                                      .checkboxListTileValueMap3[
+                                                                  preguntaItem] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxListTileValueMap3[
+                                                                            preguntaItem] =
+                                                                        newValue!);
+                                                              },
+                                                              title: Text(
+                                                                '3',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily,
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                    ),
+                                                              ),
+                                                              tileColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              dense: false,
+                                                              controlAffinity:
+                                                                  ListTileControlAffinity
+                                                                      .trailing,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Align(
+                                                            alignment:
+                                                                AlignmentDirectional(
+                                                                    0.3, 0.0),
+                                                            child: Theme(
+                                                              data: ThemeData(
+                                                                checkboxTheme:
+                                                                    CheckboxThemeData(
+                                                                  shape:
+                                                                      RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.circular(
+                                                                            25),
+                                                                  ),
+                                                                ),
+                                                                unselectedWidgetColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .accent2,
+                                                              ),
+                                                              child:
+                                                                  CheckboxListTile(
+                                                                value: _model
+                                                                        .checkboxListTileValueMap4[
+                                                                    preguntaItem] ??= false,
+                                                                onChanged:
+                                                                    (newValue) async {
+                                                                  setState(() =>
+                                                                      _model.checkboxListTileValueMap4[
+                                                                              preguntaItem] =
+                                                                          newValue!);
+                                                                },
+                                                                title: Text(
+                                                                  '4',
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .end,
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .headlineSmall
+                                                                      .override(
+                                                                        fontFamily:
+                                                                            FlutterFlowTheme.of(context).headlineSmallFamily,
+                                                                        fontSize:
+                                                                            15.0,
+                                                                        useGoogleFonts:
+                                                                            GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                      ),
+                                                                ),
+                                                                tileColor: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .secondaryBackground,
+                                                                activeColor:
+                                                                    FlutterFlowTheme.of(
+                                                                            context)
+                                                                        .primary,
+                                                                dense: false,
+                                                                controlAffinity:
+                                                                    ListTileControlAffinity
+                                                                        .trailing,
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child: Theme(
+                                                            data: ThemeData(
+                                                              checkboxTheme:
+                                                                  CheckboxThemeData(
+                                                                shape:
+                                                                    RoundedRectangleBorder(
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              25),
+                                                                ),
+                                                              ),
+                                                              unselectedWidgetColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .accent2,
+                                                            ),
+                                                            child:
+                                                                CheckboxListTile(
+                                                              value: _model
+                                                                      .checkboxListTileValueMap5[
+                                                                  preguntaItem] ??= false,
+                                                              onChanged:
+                                                                  (newValue) async {
+                                                                setState(() =>
+                                                                    _model.checkboxListTileValueMap5[
+                                                                            preguntaItem] =
+                                                                        newValue!);
+                                                              },
+                                                              title: Text(
+                                                                '5',
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .end,
+                                                                style: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .override(
+                                                                      fontFamily:
+                                                                          FlutterFlowTheme.of(context)
+                                                                              .headlineSmallFamily,
+                                                                      fontSize:
+                                                                          15.0,
+                                                                      useGoogleFonts: GoogleFonts
+                                                                              .asMap()
+                                                                          .containsKey(
+                                                                              FlutterFlowTheme.of(context).headlineSmallFamily),
+                                                                    ),
+                                                              ),
+                                                              tileColor: FlutterFlowTheme
+                                                                      .of(context)
+                                                                  .secondaryBackground,
+                                                              activeColor:
+                                                                  FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .primary,
+                                                              dense: false,
+                                                              controlAffinity:
+                                                                  ListTileControlAffinity
+                                                                      .trailing,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   );
                                                 }),
                                               );
