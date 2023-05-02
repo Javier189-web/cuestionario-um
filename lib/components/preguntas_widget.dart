@@ -63,7 +63,7 @@ class _PreguntasWidgetState extends State<PreguntasWidget> {
               }
               final textPreguntasResponse = snapshot.data!;
               return Text(
-                'Hello World',
+                textPreguntasResponse.jsonBody.toString(),
                 style: FlutterFlowTheme.of(context).bodyMedium,
               );
             },

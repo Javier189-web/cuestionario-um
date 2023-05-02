@@ -137,6 +137,73 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                       MediaQuery.of(context).size.height * 0.4,
                                   child: Stack(
                                     children: [
+                                      Align(
+                                        alignment:
+                                            AlignmentDirectional(1.08, 0.0),
+                                        child: FutureBuilder<ApiCallResponse>(
+                                          future: PreguntasCall.call(
+                                            areaId: widget.codigoqr,
+                                          ),
+                                          builder: (context, snapshot) {
+                                            // Customize what your widget looks like when it's loading.
+                                            if (!snapshot.hasData) {
+                                              return Center(
+                                                child: SizedBox(
+                                                  width: 50.0,
+                                                  height: 50.0,
+                                                  child:
+                                                      CircularProgressIndicator(
+                                                    color: FlutterFlowTheme.of(
+                                                            context)
+                                                        .primary,
+                                                  ),
+                                                ),
+                                              );
+                                            }
+                                            final columnPreguntasResponse =
+                                                snapshot.data!;
+                                            return Builder(
+                                              builder: (context) {
+                                                final preguntas =
+                                                    (PreguntasCall.preguntas(
+                                                          columnPreguntasResponse
+                                                              .jsonBody,
+                                                        ) as List)
+                                                            .map<String>((s) =>
+                                                                s.toString())
+                                                            .toList()
+                                                            ?.toList() ??
+                                                        [];
+                                                return Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: List.generate(
+                                                      preguntas.length,
+                                                      (preguntasIndex) {
+                                                    final preguntasItem =
+                                                        preguntas[
+                                                            preguntasIndex];
+                                                    return Text(
+                                                      preguntasItem,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .bodyMedium,
+                                                    );
+                                                  }),
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ),
                                       FutureBuilder<ApiCallResponse>(
                                         future: PreguntasCall.call(
                                           areaId: widget.codigoqr,
