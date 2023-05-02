@@ -1,4 +1,4 @@
-package com.mycompany.demoum
+package www.demoum.com
 
 import io.flutter.embedding.android.FlutterActivity
 

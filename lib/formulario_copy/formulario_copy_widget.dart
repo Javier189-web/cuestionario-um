@@ -1,15 +1,16 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/preguntas_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'formulario_model.dart';
-export 'formulario_model.dart';
+import 'formulario_copy_model.dart';
+export 'formulario_copy_model.dart';
 
-class FormularioWidget extends StatefulWidget {
-  const FormularioWidget({
+class FormularioCopyWidget extends StatefulWidget {
+  const FormularioCopyWidget({
     Key? key,
     this.codigoqr,
   }) : super(key: key);
@@ -17,11 +18,11 @@ class FormularioWidget extends StatefulWidget {
   final String? codigoqr;
 
   @override
-  _FormularioWidgetState createState() => _FormularioWidgetState();
+  _FormularioCopyWidgetState createState() => _FormularioCopyWidgetState();
 }
 
-class _FormularioWidgetState extends State<FormularioWidget> {
-  late FormularioModel _model;
+class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
+  late FormularioCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
@@ -29,7 +30,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FormularioModel());
+    _model = createModel(context, () => FormularioCopyModel());
   }
 
   @override
@@ -59,7 +60,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
             ),
           );
         }
-        final formularioPreguntasResponse = snapshot.data!;
+        final formularioCopyPreguntasResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Scaffold(
@@ -177,18 +178,17 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     MainAxisAlignment
                                                         .spaceAround,
                                                 crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                                    CrossAxisAlignment.start,
                                                 children: List.generate(
                                                     preguntas.length,
                                                     (preguntasIndex) {
                                                   final preguntasItem =
                                                       preguntas[preguntasIndex];
-                                                  return Text(
-                                                    preguntasItem,
-                                                    textAlign: TextAlign.center,
-                                                    style: FlutterFlowTheme.of(
-                                                            context)
-                                                        .bodyMedium,
+                                                  return Expanded(
+                                                    child: PreguntasWidget(
+                                                      key: Key(
+                                                          'Key7s1_${preguntasIndex}_of_${preguntas.length}'),
+                                                    ),
                                                   );
                                                 }),
                                               );
