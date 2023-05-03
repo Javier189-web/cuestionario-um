@@ -51,7 +51,7 @@ class _PreguntasWidgetState extends State<PreguntasWidget> {
         children: [
           FutureBuilder<ApiCallResponse>(
             future: PreguntasCall.call(
-              areaId: widget.codigoqr,
+              areaId: 'a2d5f012-1e28-4fe6-8f2c-3b4c50e0bc26',
             ),
             builder: (context, snapshot) {
               // Customize what your widget looks like when it's loading.
