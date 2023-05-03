@@ -9,7 +9,12 @@ import 'preguntas_model.dart';
 export 'preguntas_model.dart';
 
 class PreguntasWidget extends StatefulWidget {
-  const PreguntasWidget({Key? key}) : super(key: key);
+  const PreguntasWidget({
+    Key? key,
+    this.codigoqr,
+  }) : super(key: key);
+
+  final String? codigoqr;
 
   @override
   _PreguntasWidgetState createState() => _PreguntasWidgetState();
