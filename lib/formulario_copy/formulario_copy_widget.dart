@@ -1,6 +1,6 @@
 import '/backend/api_requests/api_calls.dart';
+import '/components/cerrar_widget.dart';
 import '/components/preguntas_widget.dart';
-import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +31,8 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FormularioCopyModel());
+
+    _model.textController ??= TextEditingController();
   }
 
   @override
@@ -74,21 +76,10 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [
-                Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
-                  child: FlutterFlowIconButton(
-                    borderColor: Colors.transparent,
-                    borderRadius: 30.0,
-                    buttonSize: 48.0,
-                    icon: Icon(
-                      Icons.close_rounded,
-                      color: FlutterFlowTheme.of(context).secondaryText,
-                      size: 30.0,
-                    ),
-                    onPressed: () async {
-                      Navigator.pop(context);
-                    },
-                  ),
+                wrapWithModel(
+                  model: _model.cerrarModel,
+                  updateCallback: () => setState(() {}),
+                  child: CerrarWidget(),
                 ),
               ],
               centerTitle: false,
@@ -387,6 +378,87 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
                             ),
                           ),
                         ],
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        decoration: BoxDecoration(
+                          color:
+                              FlutterFlowTheme.of(context).secondaryBackground,
+                        ),
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: PreguntaTextoCall.call(
+                            areaId: widget.codigoqr,
+                          ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50.0,
+                                  height: 50.0,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.of(context).primary,
+                                  ),
+                                ),
+                              );
+                            }
+                            final columnPreguntaTextoResponse = snapshot.data!;
+                            return Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(
+                                  columnPreguntaTextoResponse.jsonBody
+                                      .toString(),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                ),
+                                TextFormField(
+                                  controller: _model.textController,
+                                  autofocus: true,
+                                  obscureText: false,
+                                  decoration: InputDecoration(
+                                    hintText: 'Comentario',
+                                    hintStyle:
+                                        FlutterFlowTheme.of(context).bodySmall,
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x77595959),
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x77595959),
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    errorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x77595959),
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                    focusedErrorBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                        color: Color(0x77595959),
+                                        width: 2.0,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  style:
+                                      FlutterFlowTheme.of(context).bodyMedium,
+                                  maxLines: 5,
+                                  validator: _model.textControllerValidator
+                                      .asValidator(context),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),

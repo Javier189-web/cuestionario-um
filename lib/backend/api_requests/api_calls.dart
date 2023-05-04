@@ -31,7 +31,8 @@ class PreguntasCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'preguntas',
-      apiUrl: 'https://am.um.edu.mx/buzon/api/cuestionario/preguntas/${areaId}',
+      apiUrl:
+          'https://am.um.edu.mx/buzon/api/cuestionario/preguntas/${areaId}/N',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -49,6 +50,27 @@ class PreguntasCall {
         r'''$[:].descripcion''',
         true,
       );
+}
+
+class PreguntaTextoCall {
+  static Future<ApiCallResponse> call({
+    String? areaId = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'PreguntaTexto',
+      apiUrl:
+          'https://am.um.edu.mx/buzon/api/cuestionario/preguntas/${areaId}/T',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'areaId': areaId,
+      },
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: true,
+      cache: false,
+    );
+  }
 }
 
 class ApiPagingParams {
