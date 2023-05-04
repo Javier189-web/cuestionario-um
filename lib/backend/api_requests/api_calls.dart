@@ -71,6 +71,11 @@ class PreguntaTextoCall {
       cache: false,
     );
   }
+
+  static dynamic preguntaUltima(dynamic response) => getJsonField(
+        response,
+        r'''$[:].descripcion''',
+      );
 }
 
 class ApiPagingParams {

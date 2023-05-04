@@ -402,63 +402,61 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
                                 ),
                               );
                             }
-                            final columnPreguntaTextoResponse = snapshot.data!;
-                            return Column(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Text(
-                                  columnPreguntaTextoResponse.jsonBody
-                                      .toString(),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                ),
-                                TextFormField(
-                                  controller: _model.textController,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    hintText: 'Comentario',
-                                    hintStyle:
-                                        FlutterFlowTheme.of(context).bodySmall,
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x77595959),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x77595959),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    errorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x77595959),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                    focusedErrorBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: Color(0x77595959),
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(10.0),
-                                    ),
-                                  ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  maxLines: 5,
-                                  validator: _model.textControllerValidator
-                                      .asValidator(context),
-                                ),
-                              ],
+                            final textPreguntaTextoResponse = snapshot.data!;
+                            return Text(
+                              PreguntaTextoCall.preguntaUltima(
+                                textPreguntaTextoResponse.jsonBody,
+                              ).toString(),
+                              style: FlutterFlowTheme.of(context).bodyMedium,
                             );
                           },
                         ),
+                      ),
+                      Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          TextFormField(
+                            controller: _model.textController,
+                            autofocus: true,
+                            obscureText: false,
+                            decoration: InputDecoration(
+                              hintText: 'Comentario',
+                              hintStyle: FlutterFlowTheme.of(context).bodySmall,
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x77595959),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x77595959),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              errorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x77595959),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                              focusedErrorBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Color(0x77595959),
+                                  width: 2.0,
+                                ),
+                                borderRadius: BorderRadius.circular(10.0),
+                              ),
+                            ),
+                            style: FlutterFlowTheme.of(context).bodyMedium,
+                            maxLines: 5,
+                            validator: _model.textControllerValidator
+                                .asValidator(context),
+                          ),
+                        ],
                       ),
                     ],
                   ),
