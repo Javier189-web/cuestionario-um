@@ -402,62 +402,82 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    (PreguntasCall.preguntas(
-                                      formularioCopyPreguntasResponse.jsonBody,
-                                    ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList()
-                                        .last,
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                  ),
-                                  TextFormField(
-                                    controller: _model.textController,
-                                    autofocus: true,
-                                    obscureText: false,
-                                    decoration: InputDecoration(
-                                      hintText: 'Comentario',
-                                      hintStyle: FlutterFlowTheme.of(context)
-                                          .bodySmall,
-                                      enabledBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x77595959),
-                                          width: 2.0,
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: Stack(
+                                      children: [
+                                        Text(
+                                          (PreguntasCall.preguntas(
+                                            formularioCopyPreguntasResponse
+                                                .jsonBody,
+                                          ) as List)
+                                              .map<String>((s) => s.toString())
+                                              .toList()
+                                              .last,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
                                         ),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      focusedBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x77595959),
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      errorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x77595959),
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      focusedErrorBorder: OutlineInputBorder(
-                                        borderSide: BorderSide(
-                                          color: Color(0x77595959),
-                                          width: 2.0,
-                                        ),
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
+                                      ],
                                     ),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
-                                    maxLines: 5,
-                                    validator: _model.textControllerValidator
-                                        .asValidator(context),
+                                  ),
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    child: Stack(
+                                      children: [
+                                        TextFormField(
+                                          controller: _model.textController,
+                                          autofocus: true,
+                                          obscureText: false,
+                                          decoration: InputDecoration(
+                                            hintText: 'Comentario',
+                                            hintStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .bodySmall,
+                                            enabledBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x77595959),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            focusedBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x77595959),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            errorBorder: OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x77595959),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                            focusedErrorBorder:
+                                                OutlineInputBorder(
+                                              borderSide: BorderSide(
+                                                color: Color(0x77595959),
+                                                width: 2.0,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10.0),
+                                            ),
+                                          ),
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium,
+                                          maxLines: 5,
+                                          validator: _model
+                                              .textControllerValidator
+                                              .asValidator(context),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
