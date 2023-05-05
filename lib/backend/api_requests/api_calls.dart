@@ -50,6 +50,11 @@ class PreguntasCall {
         r'''$[:].descripcion''',
         true,
       );
+  static dynamic departamento(dynamic response) => getJsonField(
+        response,
+        r'''$[:].area.nombre''',
+        true,
+      );
 }
 
 class PreguntaTextoCall {
