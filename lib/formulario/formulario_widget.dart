@@ -461,7 +461,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                       children: [
                                         TextFormField(
                                           controller: _model.textController,
-                                          autofocus: true,
                                           obscureText: false,
                                           decoration: InputDecoration(
                                             hintText: 'Comentario',
