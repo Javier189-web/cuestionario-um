@@ -249,8 +249,13 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
                                                                             preguntaVar[preguntaVarIndex];
                                                                         return Text(
                                                                           preguntaVarItem,
-                                                                          style:
-                                                                              FlutterFlowTheme.of(context).bodyMedium,
+                                                                          style: FlutterFlowTheme.of(context)
+                                                                              .bodyMedium
+                                                                              .override(
+                                                                                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                                                                                fontWeight: FontWeight.bold,
+                                                                                useGoogleFonts: GoogleFonts.asMap().containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
+                                                                              ),
                                                                         );
                                                                       }),
                                                                     );
