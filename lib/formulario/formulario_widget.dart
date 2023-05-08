@@ -72,13 +72,9 @@ class _FormularioWidgetState extends State<FormularioWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               title: Text(
-                (PreguntasCall.departamento(
+                'Formulario de ${(PreguntasCall.departamento(
                   formularioPreguntasResponse.jsonBody,
-                ) as List)
-                    .map<String>((s) => s.toString())
-                    .toList()
-                    .first
-                    .toString(),
+                ) as List).map<String>((s) => s.toString()).toList().first.toString()}',
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [
@@ -102,6 +98,21 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        Text(
+                          'QUEREMOS ESUCHARTE',
+                          textAlign: TextAlign.center,
+                          style: FlutterFlowTheme.of(context)
+                              .bodyMedium
+                              .override(
+                                fontFamily: FlutterFlowTheme.of(context)
+                                    .bodyMediumFamily,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                useGoogleFonts: GoogleFonts.asMap().containsKey(
+                                    FlutterFlowTheme.of(context)
+                                        .bodyMediumFamily),
+                              ),
+                        ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
