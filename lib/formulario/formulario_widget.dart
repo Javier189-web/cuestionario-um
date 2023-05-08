@@ -72,7 +72,13 @@ class _FormularioWidgetState extends State<FormularioWidget> {
               backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               automaticallyImplyLeading: false,
               title: Text(
-                '¡QUEREMOS ESCUCHARTE!',
+                (PreguntasCall.departamento(
+                  formularioPreguntasResponse.jsonBody,
+                ) as List)
+                    .map<String>((s) => s.toString())
+                    .toList()
+                    .first
+                    .toString(),
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [
@@ -96,36 +102,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        FutureBuilder<ApiCallResponse>(
-                          future: PreguntasCall.call(
-                            areaId: widget.codigoqr,
-                          ),
-                          builder: (context, snapshot) {
-                            // Customize what your widget looks like when it's loading.
-                            if (!snapshot.hasData) {
-                              return Center(
-                                child: SizedBox(
-                                  width: 50.0,
-                                  height: 50.0,
-                                  child: CircularProgressIndicator(
-                                    color: FlutterFlowTheme.of(context).primary,
-                                  ),
-                                ),
-                              );
-                            }
-                            final textPreguntasResponse = snapshot.data!;
-                            return Text(
-                              (PreguntasCall.departamento(
-                                textPreguntasResponse.jsonBody,
-                              ) as List)
-                                  .map<String>((s) => s.toString())
-                                  .toList()
-                                  .first
-                                  .toString(),
-                              style: FlutterFlowTheme.of(context).bodyMedium,
-                            );
-                          },
-                        ),
                         Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
