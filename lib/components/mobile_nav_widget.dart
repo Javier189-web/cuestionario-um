@@ -4,6 +4,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/formulario/formulario_widget.dart';
 import '/home_page/home_page_widget.dart';
+import '/pagos/pagos_widget.dart';
 import '/perfil/perfil_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
@@ -185,7 +186,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                 await Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => FormularioWidget(),
+                    builder: (context) => PagosWidget(),
                   ),
                 );
               },
