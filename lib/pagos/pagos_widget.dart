@@ -2,9 +2,7 @@ import '/components/main_web_nav_widget.dart';
 import '/components/mobile_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/formulario/formulario_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'pagos_model.dart';
@@ -50,35 +48,10 @@ class _PagosWidgetState extends State<PagosWidget> {
           actions: [
             Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
-              child: InkWell(
-                splashColor: Colors.transparent,
-                focusColor: Colors.transparent,
-                hoverColor: Colors.transparent,
-                highlightColor: Colors.transparent,
-                onTap: () async {
-                  _model.codigoqr = await FlutterBarcodeScanner.scanBarcode(
-                    '#C62828', // scanning line color
-                    'Cancel', // cancel button text
-                    true, // whether to show the flash icon
-                    ScanMode.QR,
-                  );
-
-                  await Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FormularioWidget(
-                        codigoqr: _model.codigoqr,
-                      ),
-                    ),
-                  );
-
-                  setState(() {});
-                },
-                child: Icon(
-                  Icons.forum_rounded,
-                  color: FlutterFlowTheme.of(context).primaryBackground,
-                  size: 24.0,
-                ),
+              child: Icon(
+                Icons.forum_rounded,
+                color: FlutterFlowTheme.of(context).primaryBackground,
+                size: 24.0,
               ),
             ),
           ],
