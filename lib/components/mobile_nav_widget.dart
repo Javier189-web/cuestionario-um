@@ -94,21 +94,25 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             FlutterFlowIconButton(
-              borderColor: Colors.transparent,
               borderRadius: 30.0,
               borderWidth: 1.0,
               buttonSize: 50.0,
+              hoverIconColor: FlutterFlowTheme.of(context).primary,
               icon: Icon(
                 Icons.home_rounded,
                 color: Color(0xFF9299A1),
                 size: 24.0,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePageWidget(),
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: HomePageWidget(),
                   ),
+                  (r) => false,
                 );
               },
             ),
@@ -117,17 +121,22 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
               borderRadius: 30.0,
               borderWidth: 1.0,
               buttonSize: 50.0,
+              hoverIconColor: FlutterFlowTheme.of(context).primary,
               icon: Icon(
                 Icons.calendar_today_rounded,
                 color: Color(0xFF9299A1),
                 size: 24.0,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => CalendarioWidget(),
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: CalendarioWidget(),
                   ),
+                  (r) => false,
                 );
               },
             ),
@@ -159,8 +168,11 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
 
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
-                          builder: (context) => FormularioWidget(
+                        PageTransition(
+                          type: PageTransitionType.rightToLeft,
+                          duration: Duration(milliseconds: 300),
+                          reverseDuration: Duration(milliseconds: 300),
+                          child: FormularioWidget(
                             codigoqr: _model.codigoqr,
                           ),
                         ),
@@ -177,17 +189,22 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
               borderRadius: 30.0,
               borderWidth: 1.0,
               buttonSize: 50.0,
+              hoverIconColor: FlutterFlowTheme.of(context).primary,
               icon: Icon(
                 Icons.monetization_on,
                 color: Color(0xFF9299A1),
                 size: 24.0,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => PagosWidget(),
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: PagosWidget(),
                   ),
+                  (r) => false,
                 );
               },
             ),
@@ -196,17 +213,22 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
               borderRadius: 30.0,
               borderWidth: 1.0,
               buttonSize: 50.0,
+              hoverIconColor: FlutterFlowTheme.of(context).primary,
               icon: Icon(
                 Icons.person,
                 color: Color(0xFF9299A1),
                 size: 24.0,
               ),
               onPressed: () async {
-                await Navigator.push(
+                await Navigator.pushAndRemoveUntil(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => PerfilWidget(),
+                  PageTransition(
+                    type: PageTransitionType.rightToLeft,
+                    duration: Duration(milliseconds: 300),
+                    reverseDuration: Duration(milliseconds: 300),
+                    child: PerfilWidget(),
                   ),
+                  (r) => false,
                 );
               },
             ),

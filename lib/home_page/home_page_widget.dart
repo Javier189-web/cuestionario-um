@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/formulario/formulario_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'home_page_model.dart';
@@ -46,11 +47,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
-          automaticallyImplyLeading: true,
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 15.0, 0.0),
-              child: InkWell(
+          automaticallyImplyLeading: false,
+          title: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SvgPicture.asset(
+                'assets/images/short_logo.svg',
+                width: 52.0,
+                height: 37.0,
+                fit: BoxFit.cover,
+              ),
+              InkWell(
                 splashColor: Colors.transparent,
                 focusColor: Colors.transparent,
                 hoverColor: Colors.transparent,
@@ -65,8 +73,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
                   await Navigator.push(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => FormularioWidget(
+                    PageTransition(
+                      type: PageTransitionType.rightToLeft,
+                      duration: Duration(milliseconds: 300),
+                      reverseDuration: Duration(milliseconds: 300),
+                      child: FormularioWidget(
                         codigoqr: _model.codigoqr,
                       ),
                     ),
@@ -75,15 +86,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   setState(() {});
                 },
                 child: Icon(
-                  Icons.forum_rounded,
-                  color: FlutterFlowTheme.of(context).primaryBackground,
+                  Icons.assignment,
+                  color: FlutterFlowTheme.of(context).secondaryBackground,
                   size: 24.0,
                 ),
               ),
-            ),
-          ],
-          centerTitle: true,
-          elevation: 4.0,
+            ],
+          ),
+          actions: [],
+          centerTitle: false,
+          elevation: 2.0,
         ),
         body: Row(
           mainAxisSize: MainAxisSize.max,
@@ -285,6 +297,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                                 color:
                                                     FlutterFlowTheme.of(context)
                                                         .primaryBackground,
+                                              ),
+                                              child: Text(
+                                                'INICIO',
+                                                textAlign: TextAlign.center,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium,
                                               ),
                                             ),
                                           ],
