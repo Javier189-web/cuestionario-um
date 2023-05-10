@@ -166,7 +166,7 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                         ScanMode.QR,
                       );
 
-                      await Navigator.push(
+                      await Navigator.pushReplacement(
                         context,
                         PageTransition(
                           type: PageTransitionType.rightToLeft,
