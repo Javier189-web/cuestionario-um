@@ -392,36 +392,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           ],
                                         ),
                                       ),
-                                      FutureBuilder<ApiCallResponse>(
-                                        future: PreguntasCall.call(
-                                          areaId: widget.codigoqr,
-                                        ),
-                                        builder: (context, snapshot) {
-                                          // Customize what your widget looks like when it's loading.
-                                          if (!snapshot.hasData) {
-                                            return Center(
-                                              child: SizedBox(
-                                                width: 50.0,
-                                                height: 50.0,
-                                                child:
-                                                    CircularProgressIndicator(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primary,
-                                                ),
-                                              ),
-                                            );
-                                          }
-                                          final textPreguntasResponse =
-                                              snapshot.data!;
-                                          return Text(
-                                            textPreguntasResponse.jsonBody
-                                                .toString(),
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyMedium,
-                                          );
-                                        },
-                                      ),
                                     ],
                                   );
                                 },
@@ -572,7 +542,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                               await RespuestasCall.call(
                                             respuestaTexto:
                                                 _model.textController.text,
-                                            codigo: 1999995,
+                                            codigo: 1999994,
                                             preguntaId:
                                                 (PreguntaTextoCall.preguntaId(
                                               buttonPreguntaTextoResponse

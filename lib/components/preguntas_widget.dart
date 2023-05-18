@@ -59,7 +59,7 @@ class _PreguntasWidgetState extends State<PreguntasWidget> {
             initialRating: _model.ratingBarValue ??= 0.0,
             unratedColor: FlutterFlowTheme.of(context).accent2,
             itemCount: 5,
-            itemSize: 40.0,
+            itemSize: 30.0,
             glowColor: FlutterFlowTheme.of(context).secondary,
           ),
         ],
