@@ -86,7 +86,7 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
               title: Text(
                 'Formulario de ${(PreguntasCall.departamento(
                   formularioCopyPreguntasResponse.jsonBody,
-                ) as List).map<String>((s) => s.toString()).toList().first.toString()}',
+                ) as List).map<String>((s) => s.toString()).toList().first}',
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [

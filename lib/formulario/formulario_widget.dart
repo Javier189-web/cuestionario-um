@@ -75,7 +75,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
               title: Text(
                 'Formulario de ${(PreguntasCall.departamento(
                   formularioPreguntasResponse.jsonBody,
-                ) as List).map<String>((s) => s.toString()).toList().first.toString()}',
+                ) as List).map<String>((s) => s.toString()).toList().first}',
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
               actions: [
@@ -514,6 +514,17 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
+                                  Text(
+                                    (PreguntasCall.preguntaId(
+                                      formularioPreguntasResponse.jsonBody,
+                                    ) as List)
+                                        .map<String>((s) => s.toString())
+                                        .toList()
+                                        .last
+                                        .toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
                                   FFButtonWidget(
                                     onPressed: () async {
                                       _model.apiResultadoRespuestas =
@@ -521,8 +532,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                         respuestaTexto:
                                             _model.textController.text,
                                         codigo: 1999997,
-                                        preguntaId:
-                                            '297d439f-c243-4ee5-847c-a323bad275fd',
+                                        preguntaId: '1',
                                       );
                                       if ((_model.apiResultadoRespuestas
                                               ?.succeeded ??
