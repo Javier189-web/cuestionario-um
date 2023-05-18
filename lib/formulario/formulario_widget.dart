@@ -415,13 +415,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           final textPreguntasResponse =
                                               snapshot.data!;
                                           return Text(
-                                            (PreguntasCall.idPreguntaN(
-                                              textPreguntasResponse.jsonBody,
-                                            ) as List)
-                                                .map<String>(
-                                                    (s) => s.toString())
-                                                .toList()
-                                                .length
+                                            textPreguntasResponse.jsonBody
                                                 .toString(),
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyMedium,
