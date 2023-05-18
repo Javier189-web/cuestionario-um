@@ -100,6 +100,7 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
               elevation: 0.0,
             ),
             body: SafeArea(
+              top: true,
               child: Container(
                 width: MediaQuery.of(context).size.width * 1.0,
                 child: Form(

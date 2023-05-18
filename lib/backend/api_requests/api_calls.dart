@@ -55,11 +55,6 @@ class PreguntasCall {
         r'''$[:].area.nombre''',
         true,
       );
-  static dynamic preguntaId(dynamic response) => getJsonField(
-        response,
-        r'''$[:].preguntaId''',
-        true,
-      );
 }
 
 class PreguntaTextoCall {
@@ -85,6 +80,11 @@ class PreguntaTextoCall {
   static dynamic preguntaUltima(dynamic response) => getJsonField(
         response,
         r'''$[:].descripcion''',
+      );
+  static dynamic preguntaId(dynamic response) => getJsonField(
+        response,
+        r'''$[:].preguntaId''',
+        true,
       );
 }
 

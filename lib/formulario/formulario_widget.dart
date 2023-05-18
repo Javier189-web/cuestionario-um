@@ -89,6 +89,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
               elevation: 0.0,
             ),
             body: SafeArea(
+              top: true,
               child: Container(
                 width: MediaQuery.of(context).size.width * 1.0,
                 child: Form(
@@ -514,16 +515,39 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text(
-                                    (PreguntasCall.preguntaId(
-                                      formularioPreguntasResponse.jsonBody,
-                                    ) as List)
-                                        .map<String>((s) => s.toString())
-                                        .toList()
-                                        .last
-                                        .toString(),
-                                    style:
-                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  FutureBuilder<ApiCallResponse>(
+                                    future: PreguntaTextoCall.call(
+                                      areaId: widget.codigoqr,
+                                    ),
+                                    builder: (context, snapshot) {
+                                      // Customize what your widget looks like when it's loading.
+                                      if (!snapshot.hasData) {
+                                        return Center(
+                                          child: SizedBox(
+                                            width: 50.0,
+                                            height: 50.0,
+                                            child: CircularProgressIndicator(
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primary,
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                      final textPreguntaTextoResponse =
+                                          snapshot.data!;
+                                      return Text(
+                                        (PreguntaTextoCall.preguntaId(
+                                          textPreguntaTextoResponse.jsonBody,
+                                        ) as List)
+                                            .map<String>((s) => s.toString())
+                                            .toList()
+                                            .first
+                                            .toString(),
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyMedium,
+                                      );
+                                    },
                                   ),
                                   FFButtonWidget(
                                     onPressed: () async {

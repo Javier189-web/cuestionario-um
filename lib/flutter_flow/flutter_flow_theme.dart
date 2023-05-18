@@ -406,9 +406,12 @@ class TabletTypography extends Typography {
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => '';
+  String get bodyLargeFamily => 'Urbanist';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Urbanist';
   TextStyle get bodyMedium => GoogleFonts.getFont(
@@ -515,9 +518,12 @@ class DesktopTypography extends Typography {
         fontWeight: FontWeight.w500,
         fontSize: 11.0,
       );
-  String get bodyLargeFamily => '';
+  String get bodyLargeFamily => 'Urbanist';
   TextStyle get bodyLarge => GoogleFonts.getFont(
-        'Roboto',
+        'Urbanist',
+        color: theme.primaryText,
+        fontWeight: FontWeight.normal,
+        fontSize: 16.0,
       );
   String get bodyMediumFamily => 'Urbanist';
   TextStyle get bodyMedium => GoogleFonts.getFont(
