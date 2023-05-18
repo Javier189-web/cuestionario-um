@@ -4,14 +4,16 @@ import '/components/preguntas_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'formulario_model.dart';
-export 'formulario_model.dart';
+import 'formulario_copy_model.dart';
+export 'formulario_copy_model.dart';
 
-class FormularioWidget extends StatefulWidget {
-  const FormularioWidget({
+class FormularioCopyWidget extends StatefulWidget {
+  const FormularioCopyWidget({
     Key? key,
     this.codigoqr,
   }) : super(key: key);
@@ -19,11 +21,11 @@ class FormularioWidget extends StatefulWidget {
   final String? codigoqr;
 
   @override
-  _FormularioWidgetState createState() => _FormularioWidgetState();
+  _FormularioCopyWidgetState createState() => _FormularioCopyWidgetState();
 }
 
-class _FormularioWidgetState extends State<FormularioWidget> {
-  late FormularioModel _model;
+class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
+  late FormularioCopyModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   final _unfocusNode = FocusNode();
@@ -31,7 +33,16 @@ class _FormularioWidgetState extends State<FormularioWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FormularioModel());
+    _model = createModel(context, () => FormularioCopyModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      _model.instantTimer = InstantTimer.periodic(
+        duration: Duration(milliseconds: 1000),
+        callback: (timer) async {},
+        startImmediately: true,
+      );
+    });
 
     _model.textController ??= TextEditingController();
   }
@@ -63,7 +74,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
             ),
           );
         }
-        final formularioPreguntasResponse = snapshot.data!;
+        final formularioCopyPreguntasResponse = snapshot.data!;
         return GestureDetector(
           onTap: () => FocusScope.of(context).requestFocus(_unfocusNode),
           child: Scaffold(
@@ -74,7 +85,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
               automaticallyImplyLeading: false,
               title: Text(
                 'Formulario de ${(PreguntasCall.departamento(
-                  formularioPreguntasResponse.jsonBody,
+                  formularioCopyPreguntasResponse.jsonBody,
                 ) as List).map<String>((s) => s.toString()).toList().first.toString()}',
                 style: FlutterFlowTheme.of(context).headlineMedium,
               ),
@@ -371,9 +382,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                               .data!;
                                                                       return PreguntasWidget(
                                                                         key: Key(
-                                                                            'Key7s1_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                        varEstrellas:
-                                                                            false,
+                                                                            'Keye52_${preguntasVarIndex}_of_${preguntasVar.length}'),
                                                                       );
                                                                     },
                                                                   ),
@@ -418,7 +427,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                       children: [
                                         Text(
                                           (PreguntasCall.preguntas(
-                                            formularioPreguntasResponse
+                                            formularioCopyPreguntasResponse
                                                 .jsonBody,
                                           ) as List)
                                               .map<String>((s) => s.toString())
@@ -503,83 +512,35 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 ],
                               ),
                             ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      _model.apiResultadoRespuestas =
-                                          await RespuestasCall.call(
-                                        respuestaTexto:
-                                            _model.textController.text,
-                                        codigo: 1999997,
-                                        preguntaId:
-                                            '297d439f-c243-4ee5-847c-a323bad275fd',
-                                      );
-                                      if ((_model.apiResultadoRespuestas
-                                              ?.succeeded ??
-                                          true)) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('Respuesta'),
-                                              content: Text(
-                                                  'Se envió correctamente'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
-                                            );
-                                          },
-                                        );
-                                      }
-
-                                      setState(() {});
-                                    },
-                                    text: 'Responder',
-                                    options: FFButtonOptions(
-                                      width: 130.0,
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: Colors.white,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
-                                                    FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
-                                          ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
+                            FFButtonWidget(
+                              onPressed: () {
+                                print('Button pressed ...');
+                              },
+                              text: 'Enviar',
+                              options: FFButtonOptions(
+                                width: 130.0,
+                                height: 40.0,
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 0.0, 0.0),
+                                color: FlutterFlowTheme.of(context).primary,
+                                textStyle: FlutterFlowTheme.of(context)
+                                    .titleSmall
+                                    .override(
+                                      fontFamily: FlutterFlowTheme.of(context)
+                                          .titleSmallFamily,
+                                      color: Colors.white,
+                                      useGoogleFonts: GoogleFonts.asMap()
+                                          .containsKey(
+                                              FlutterFlowTheme.of(context)
+                                                  .titleSmallFamily),
                                     ),
-                                  ),
-                                ],
+                                borderSide: BorderSide(
+                                  color: Colors.transparent,
+                                  width: 1.0,
+                                ),
+                                borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
                           ],

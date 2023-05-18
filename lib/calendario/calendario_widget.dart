@@ -3,6 +3,7 @@ import '/components/mobile_nav_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/formulario/formulario_widget.dart';
+import '/home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,11 +53,25 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(
-                'assets/images/short_logo.svg',
-                width: 52.0,
-                height: 37.0,
-                fit: BoxFit.cover,
+              InkWell(
+                splashColor: Colors.transparent,
+                focusColor: Colors.transparent,
+                hoverColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePageWidget(),
+                    ),
+                  );
+                },
+                child: SvgPicture.asset(
+                  'assets/images/short_logo.svg',
+                  width: 52.0,
+                  height: 37.0,
+                  fit: BoxFit.cover,
+                ),
               ),
               InkWell(
                 splashColor: Colors.transparent,
@@ -71,17 +86,41 @@ class _CalendarioWidgetState extends State<CalendarioWidget> {
                     ScanMode.QR,
                   );
 
-                  await Navigator.push(
-                    context,
-                    PageTransition(
-                      type: PageTransitionType.rightToLeft,
-                      duration: Duration(milliseconds: 300),
-                      reverseDuration: Duration(milliseconds: 300),
-                      child: FormularioWidget(
-                        codigoqr: _model.codigoqr,
+                  if (_model.codigoqr == '-1') {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePageWidget(),
                       ),
-                    ),
-                  );
+                    );
+                  } else if (Uri.parse(_model.codigoqr!).isAbsolute) {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: Text('QR Inválido'),
+                          content: Text(
+                              'Escanea nuevamente para obtener un código válido.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  } else {
+                    await Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => FormularioWidget(
+                          codigoqr: _model.codigoqr,
+                        ),
+                      ),
+                    );
+                  }
 
                   setState(() {});
                 },

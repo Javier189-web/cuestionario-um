@@ -83,6 +83,46 @@ class PreguntaTextoCall {
       );
 }
 
+class RespuestasCall {
+  static Future<ApiCallResponse> call({
+    String? preguntaId = '',
+    int? respuestaNumero,
+    String? respuestaTexto = '',
+    int? codigo,
+  }) {
+    final body = '''
+[
+  {
+    "pregunta": {
+      "preguntaId": "${preguntaId}"
+    },
+    "respuestaNumero": ${respuestaNumero},
+    "codigo": ${codigo}
+  },
+  {
+    "pregunta": {
+      "preguntaId": "${preguntaId}"
+    },
+    "respuestaTexto": "${respuestaTexto}",
+    "codigo": ${codigo}
+  }
+]''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Respuestas',
+      apiUrl: 'https://am.um.edu.mx/buzon/api/cuestionario/respuestas',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: true,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
 class ApiPagingParams {
   int nextPageNumber = 0;
   int numItems = 0;

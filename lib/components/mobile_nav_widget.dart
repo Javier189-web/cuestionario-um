@@ -161,22 +161,49 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
                       // codigoqr = es una variable que guarda lo escaneado mediante la cámara
                       _model.codigoqr = await FlutterBarcodeScanner.scanBarcode(
                         '#C62828', // scanning line color
-                        'Cancel', // cancel button text
+                        'Inicio', // cancel button text
                         true, // whether to show the flash icon
                         ScanMode.QR,
                       );
 
-                      await Navigator.pushReplacement(
-                        context,
-                        PageTransition(
-                          type: PageTransitionType.rightToLeft,
-                          duration: Duration(milliseconds: 300),
-                          reverseDuration: Duration(milliseconds: 300),
-                          child: FormularioWidget(
-                            codigoqr: _model.codigoqr,
+                      if (_model.codigoqr == '-1') {
+                        // Si se cumple la condición que el código qr es igual a -1 se redireccione a la página homePage
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePageWidget(),
                           ),
-                        ),
-                      );
+                        );
+                      } else if (Uri.parse(_model.codigoqr!).isAbsolute) {
+                        // Si se cumple la condición que el código qr es una url  se redireccione a la página de atras con una caja de dialogo
+                        await showDialog(
+                          context: context,
+                          builder: (alertDialogContext) {
+                            return AlertDialog(
+                              title: Text('QR Inválido'),
+                              content: Text(
+                                  'Escanea nuevamente para obtener un código válido.'),
+                              actions: [
+                                TextButton(
+                                  onPressed: () =>
+                                      Navigator.pop(alertDialogContext),
+                                  child: Text('Ok'),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      } else {
+                        // De lo contrario, si todo está bien que se redireccione a la página de formulario
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => FormularioWidget(
+                              codigoqr: _model.codigoqr,
+                            ),
+                          ),
+                        );
+                      }
 
                       setState(() {});
                     },

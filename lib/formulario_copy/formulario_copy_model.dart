@@ -4,21 +4,22 @@ import '/components/preguntas_widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/flutter_flow/instant_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-class FormularioModel extends FlutterFlowModel {
+class FormularioCopyModel extends FlutterFlowModel {
   ///  State fields for stateful widgets in this page.
 
   final formKey = GlobalKey<FormState>();
+  InstantTimer? instantTimer;
   // Model for cerrar component.
   late CerrarModel cerrarModel;
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
-  // Stores action output result for [Backend Call - API (Respuestas)] action in Button widget.
-  ApiCallResponse? apiResultadoRespuestas;
 
   /// Initialization and disposal methods.
 
@@ -27,6 +28,7 @@ class FormularioModel extends FlutterFlowModel {
   }
 
   void dispose() {
+    instantTimer?.cancel();
     cerrarModel.dispose();
     textController?.dispose();
   }
