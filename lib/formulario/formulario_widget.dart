@@ -392,6 +392,42 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           ],
                                         ),
                                       ),
+                                      FutureBuilder<ApiCallResponse>(
+                                        future: PreguntasCall.call(
+                                          areaId: widget.codigoqr,
+                                        ),
+                                        builder: (context, snapshot) {
+                                          // Customize what your widget looks like when it's loading.
+                                          if (!snapshot.hasData) {
+                                            return Center(
+                                              child: SizedBox(
+                                                width: 50.0,
+                                                height: 50.0,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primary,
+                                                ),
+                                              ),
+                                            );
+                                          }
+                                          final textPreguntasResponse =
+                                              snapshot.data!;
+                                          return Text(
+                                            (PreguntasCall.idPreguntaN(
+                                              textPreguntasResponse.jsonBody,
+                                            ) as List)
+                                                .map<String>(
+                                                    (s) => s.toString())
+                                                .toList()
+                                                .length
+                                                .toString(),
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium,
+                                          );
+                                        },
+                                      ),
                                     ],
                                   );
                                 },

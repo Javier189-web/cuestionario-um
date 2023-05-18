@@ -55,6 +55,11 @@ class PreguntasCall {
         r'''$[:].area.nombre''',
         true,
       );
+  static dynamic idPreguntaN(dynamic response) => getJsonField(
+        response,
+        r'''$[:].preguntaId''',
+        true,
+      );
 }
 
 class PreguntaTextoCall {
