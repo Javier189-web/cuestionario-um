@@ -534,84 +534,87 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           ),
                                         );
                                       }
-                                      final textPreguntaTextoResponse =
+                                      final buttonPreguntaTextoResponse =
                                           snapshot.data!;
-                                      return Text(
-                                        (PreguntaTextoCall.preguntaId(
-                                          textPreguntaTextoResponse.jsonBody,
-                                        ) as List)
-                                            .map<String>((s) => s.toString())
-                                            .toList()
-                                            .first
-                                            .toString(),
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium,
-                                      );
-                                    },
-                                  ),
-                                  FFButtonWidget(
-                                    onPressed: () async {
-                                      _model.apiResultadoRespuestas =
-                                          await RespuestasCall.call(
-                                        respuestaTexto:
-                                            _model.textController.text,
-                                        codigo: 1999997,
-                                        preguntaId: '1',
-                                      );
-                                      if ((_model.apiResultadoRespuestas
-                                              ?.succeeded ??
-                                          true)) {
-                                        await showDialog(
-                                          context: context,
-                                          builder: (alertDialogContext) {
-                                            return AlertDialog(
-                                              title: Text('Respuesta'),
-                                              content: Text(
-                                                  'Se envió correctamente'),
-                                              actions: [
-                                                TextButton(
-                                                  onPressed: () =>
-                                                      Navigator.pop(
-                                                          alertDialogContext),
-                                                  child: Text('Ok'),
-                                                ),
-                                              ],
+                                      return FFButtonWidget(
+                                        onPressed: () async {
+                                          _model.apiResultadoRespuestas =
+                                              await RespuestasCall.call(
+                                            respuestaTexto:
+                                                _model.textController.text,
+                                            codigo: 1999995,
+                                            preguntaId:
+                                                (PreguntaTextoCall.preguntaId(
+                                              buttonPreguntaTextoResponse
+                                                  .jsonBody,
+                                            ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()
+                                                    .first
+                                                    .toString(),
+                                          );
+                                          if ((_model.apiResultadoRespuestas
+                                                  ?.succeeded ??
+                                              true)) {
+                                            await showDialog(
+                                              context: context,
+                                              builder: (alertDialogContext) {
+                                                return AlertDialog(
+                                                  title: Text('Respuesta'),
+                                                  content: Text(
+                                                      'Se envió correctamente'),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(
+                                                              alertDialogContext),
+                                                      child: Text('Ok'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
                                             );
-                                          },
-                                        );
-                                      }
+                                          }
 
-                                      setState(() {});
-                                    },
-                                    text: 'Responder',
-                                    options: FFButtonOptions(
-                                      width: 130.0,
-                                      height: 40.0,
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0.0, 0.0, 0.0, 0.0),
-                                      iconPadding:
-                                          EdgeInsetsDirectional.fromSTEB(
-                                              0.0, 0.0, 0.0, 0.0),
-                                      color:
-                                          FlutterFlowTheme.of(context).primary,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .titleSmall
-                                          .override(
-                                            fontFamily:
-                                                FlutterFlowTheme.of(context)
-                                                    .titleSmallFamily,
-                                            color: Colors.white,
-                                            useGoogleFonts: GoogleFonts.asMap()
-                                                .containsKey(
+                                          setState(() {});
+                                        },
+                                        text: 'Responder',
+                                        options: FFButtonOptions(
+                                          width: 130.0,
+                                          height: 40.0,
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          iconPadding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0.0, 0.0, 0.0, 0.0),
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily:
                                                     FlutterFlowTheme.of(context)
-                                                        .titleSmallFamily),
+                                                        .titleSmallFamily,
+                                                color: Colors.white,
+                                                useGoogleFonts: GoogleFonts
+                                                        .asMap()
+                                                    .containsKey(
+                                                        FlutterFlowTheme.of(
+                                                                context)
+                                                            .titleSmallFamily),
+                                              ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1.0,
                                           ),
-                                      borderSide: BorderSide(
-                                        color: Colors.transparent,
-                                        width: 1.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                      );
+                                    },
                                   ),
                                 ],
                               ),
