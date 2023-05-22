@@ -49,8 +49,12 @@ class _PreguntasWidgetState extends State<PreguntasWidget> {
         mainAxisSize: MainAxisSize.min,
         children: [
           RatingBar.builder(
-            onRatingUpdate: (newValue) =>
-                setState(() => _model.ratingBarValue = newValue),
+            onRatingUpdate: (newValue) {
+              setState(() => _model.ratingBarValue = newValue);
+              setState(() {
+                _model.ratingBarValue = _model.ratingBarValue!;
+              });
+            },
             itemBuilder: (context, index) => Icon(
               Icons.star_rounded,
               color: FlutterFlowTheme.of(context).secondary,
