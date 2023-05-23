@@ -18,7 +18,7 @@ class FormularioWidget extends StatefulWidget {
   }) : super(key: key);
 
   final String? codigoqr;
-  final List<double>? starVar;
+  final double? starVar;
 
   @override
   _FormularioWidgetState createState() => _FormularioWidgetState();
@@ -640,8 +640,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
-                                            respuestaNumero:
-                                                widget.starVar?.first,
+                                            respuestaNumero: widget.starVar,
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
