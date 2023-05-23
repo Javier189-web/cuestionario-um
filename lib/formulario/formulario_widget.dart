@@ -14,11 +14,12 @@ class FormularioWidget extends StatefulWidget {
   const FormularioWidget({
     Key? key,
     this.codigoqr,
-    this.starVar,
-  }) : super(key: key);
+    double? starVar,
+  })  : this.starVar = starVar ?? 1.0,
+        super(key: key);
 
   final String? codigoqr;
-  final double? starVar;
+  final double starVar;
 
   @override
   _FormularioWidgetState createState() => _FormularioWidgetState();
