@@ -10,10 +10,11 @@ export 'star_model.dart';
 class StarWidget extends StatefulWidget {
   const StarWidget({
     Key? key,
-    this.estrellasVar,
-  }) : super(key: key);
+    double? estrellasVar,
+  })  : this.estrellasVar = estrellasVar ?? 1.0,
+        super(key: key);
 
-  final double? estrellasVar;
+  final double estrellasVar;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -54,7 +55,7 @@ class _StarWidgetState extends State<StarWidget> {
             color: FlutterFlowTheme.of(context).tertiary,
           ),
           direction: Axis.horizontal,
-          initialRating: _model.ratingBarValue ??= widget.estrellasVar!,
+          initialRating: _model.ratingBarValue ??= widget.estrellasVar,
           unratedColor: FlutterFlowTheme.of(context).accent3,
           itemCount: 5,
           itemSize: 30.0,
