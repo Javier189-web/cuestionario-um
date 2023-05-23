@@ -640,7 +640,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
-                                            respuestaNumero: widget.starVar,
+                                            respuestaNumero:
+                                                widget.starVar?.toString(),
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
