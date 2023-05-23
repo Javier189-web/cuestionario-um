@@ -15,10 +15,12 @@ class FormularioWidget extends StatefulWidget {
     Key? key,
     this.codigoqr,
     this.starVar,
+    this.varEstrellas,
   }) : super(key: key);
 
   final String? codigoqr;
   final double? starVar;
+  final List<double>? varEstrellas;
 
   @override
   _FormularioWidgetState createState() => _FormularioWidgetState();
@@ -345,8 +347,9 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                       StarWidget(
                                                                     key: Key(
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                    starVar: widget
-                                                                        .starVar,
+                                                                    varEstrellas:
+                                                                        widget
+                                                                            .varEstrellas,
                                                                   ),
                                                                 );
                                                               }),
