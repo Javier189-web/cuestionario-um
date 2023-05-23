@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'formulario_model.dart';
@@ -46,6 +47,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: PreguntasCall.call(
         areaId: widget.codigoqr,
@@ -339,44 +342,12 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                     preguntasVar[
                                                                         preguntasVarIndex];
                                                                 return Expanded(
-                                                                  child: FutureBuilder<
-                                                                      ApiCallResponse>(
-                                                                    future:
-                                                                        PreguntasCall
-                                                                            .call(
-                                                                      areaId: widget
-                                                                          .codigoqr,
-                                                                    ),
-                                                                    builder:
-                                                                        (context,
-                                                                            snapshot) {
-                                                                      // Customize what your widget looks like when it's loading.
-                                                                      if (!snapshot
-                                                                          .hasData) {
-                                                                        return Center(
-                                                                          child:
-                                                                              SizedBox(
-                                                                            width:
-                                                                                50.0,
-                                                                            height:
-                                                                                50.0,
-                                                                            child:
-                                                                                CircularProgressIndicator(
-                                                                              color: FlutterFlowTheme.of(context).primary,
-                                                                            ),
-                                                                          ),
-                                                                        );
-                                                                      }
-                                                                      final preguntasPreguntasResponse =
-                                                                          snapshot
-                                                                              .data!;
-                                                                      return PreguntasWidget(
-                                                                        key: Key(
-                                                                            'Key7s1_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                        varEstrellas:
-                                                                            false,
-                                                                      );
-                                                                    },
+                                                                  child:
+                                                                      PreguntasWidget(
+                                                                    key: Key(
+                                                                        'Key7s1_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                    varEstrellas:
+                                                                        true,
                                                                   ),
                                                                 );
                                                               }),
@@ -505,6 +476,42 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             .bodyMedium,
                                       );
                                     },
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.9,
+                              height: 100.0,
+                              decoration: BoxDecoration(
+                                color: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  RatingBar.builder(
+                                    onRatingUpdate: (newValue) => setState(
+                                        () => _model.ratingBarValue = newValue),
+                                    itemBuilder: (context, index) => Icon(
+                                      Icons.star_rounded,
+                                      color:
+                                          FlutterFlowTheme.of(context).tertiary,
+                                    ),
+                                    direction: Axis.horizontal,
+                                    initialRating: _model.ratingBarValue ??=
+                                        3.0,
+                                    unratedColor:
+                                        FlutterFlowTheme.of(context).accent3,
+                                    itemCount: 5,
+                                    itemSize: 40.0,
+                                    glowColor:
+                                        FlutterFlowTheme.of(context).tertiary,
+                                  ),
+                                  Text(
+                                    _model.ratingBarValue.toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ],
                               ),
@@ -654,7 +661,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                               await RespuestasCall.call(
                                             respuestaTexto:
                                                 _model.textController.text,
-                                            codigo: 1999991,
+                                            codigo: 1999992,
                                             preguntaId:
                                                 (PreguntaTextoCall.preguntaId(
                                               buttonPreguntaTextoResponse
@@ -665,7 +672,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
-                                            respuestaNumero: 5,
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
