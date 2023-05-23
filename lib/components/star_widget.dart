@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -8,13 +9,7 @@ import 'star_model.dart';
 export 'star_model.dart';
 
 class StarWidget extends StatefulWidget {
-  const StarWidget({
-    Key? key,
-    double? estrellasVar,
-  })  : this.estrellasVar = estrellasVar ?? 1.0,
-        super(key: key);
-
-  final double estrellasVar;
+  const StarWidget({Key? key}) : super(key: key);
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -55,20 +50,40 @@ class _StarWidgetState extends State<StarWidget> {
             color: FlutterFlowTheme.of(context).tertiary,
           ),
           direction: Axis.horizontal,
-          initialRating: _model.ratingBarValue ??= widget.estrellasVar,
+          initialRating: _model.ratingBarValue ??= 1.0,
           unratedColor: FlutterFlowTheme.of(context).accent3,
           itemCount: 5,
           itemSize: 30.0,
           glowColor: FlutterFlowTheme.of(context).tertiary,
         ),
-        Text(
-          _model.ratingBarValue.toString(),
-          style: FlutterFlowTheme.of(context).bodyMedium.override(
-                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                fontWeight: FontWeight.w500,
-                useGoogleFonts: GoogleFonts.asMap()
-                    .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
-              ),
+        FutureBuilder<ApiCallResponse>(
+          future: RespuestasCall.call(
+            respuestaNumero: _model.ratingBarValue.toString(),
+          ),
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              );
+            }
+            final textRespuestasResponse = snapshot.data!;
+            return Text(
+              _model.ratingBarValue.toString(),
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                    fontWeight: FontWeight.w500,
+                    useGoogleFonts: GoogleFonts.asMap().containsKey(
+                        FlutterFlowTheme.of(context).bodyMediumFamily),
+                  ),
+            );
+          },
         ),
       ],
     );

@@ -14,11 +14,9 @@ class FormularioWidget extends StatefulWidget {
   const FormularioWidget({
     Key? key,
     this.codigoqr,
-    this.estrellasVar,
   }) : super(key: key);
 
   final String? codigoqr;
-  final double? estrellasVar;
 
   @override
   _FormularioWidgetState createState() => _FormularioWidgetState();
@@ -345,13 +343,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                       StarWidget(
                                                                     key: Key(
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                    estrellasVar:
-                                                                        valueOrDefault<
-                                                                            double>(
-                                                                      widget
-                                                                          .estrellasVar,
-                                                                      2.0,
-                                                                    ),
                                                                   ),
                                                                 );
                                                               }),
@@ -482,7 +473,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                     },
                                   ),
                                   Text(
-                                    widget.estrellasVar.toString(),
+                                    'Hello World',
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
