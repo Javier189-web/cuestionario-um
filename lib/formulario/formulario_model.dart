@@ -14,8 +14,6 @@ class FormularioModel extends FlutterFlowModel {
   final formKey = GlobalKey<FormState>();
   // Model for cerrar component.
   late CerrarModel cerrarModel;
-  // Model for star component.
-  late StarModel starModel2;
   // State field(s) for TextField widget.
   TextEditingController? textController;
   String? Function(BuildContext, String?)? textControllerValidator;
@@ -26,12 +24,10 @@ class FormularioModel extends FlutterFlowModel {
 
   void initState(BuildContext context) {
     cerrarModel = createModel(context, () => CerrarModel());
-    starModel2 = createModel(context, () => StarModel());
   }
 
   void dispose() {
     cerrarModel.dispose();
-    starModel2.dispose();
     textController?.dispose();
   }
 

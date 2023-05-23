@@ -14,9 +14,11 @@ class FormularioWidget extends StatefulWidget {
   const FormularioWidget({
     Key? key,
     this.codigoqr,
+    this.ratingVar,
   }) : super(key: key);
 
   final String? codigoqr;
+  final List<double>? ratingVar;
 
   @override
   _FormularioWidgetState createState() => _FormularioWidgetState();
@@ -342,7 +344,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                   child:
                                                                       StarWidget(
                                                                     key: Key(
-                                                                        'Key0o1_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                        'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
                                                                   ),
                                                                 );
                                                               }),
@@ -480,11 +482,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                               decoration: BoxDecoration(
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
-                              ),
-                              child: wrapWithModel(
-                                model: _model.starModel2,
-                                updateCallback: () => setState(() {}),
-                                child: StarWidget(),
                               ),
                             ),
                             Container(
@@ -643,6 +640,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
+                                            respuestaNumero:
+                                                widget.ratingVar?[0],
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??

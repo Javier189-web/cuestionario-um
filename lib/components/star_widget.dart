@@ -8,7 +8,12 @@ import 'star_model.dart';
 export 'star_model.dart';
 
 class StarWidget extends StatefulWidget {
-  const StarWidget({Key? key}) : super(key: key);
+  const StarWidget({
+    Key? key,
+    this.ratingVar,
+  }) : super(key: key);
+
+  final List<double>? ratingVar;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
