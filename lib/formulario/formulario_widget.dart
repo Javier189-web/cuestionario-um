@@ -345,6 +345,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                       StarWidget(
                                                                     key: Key(
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                    starVar:
+                                                                        2.0,
                                                                   ),
                                                                 );
                                                               }),
@@ -473,6 +475,11 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             .bodyMedium,
                                       );
                                     },
+                                  ),
+                                  Text(
+                                    widget.starVar.toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ],
                               ),
@@ -640,8 +647,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
-                                            respuestaNumero:
-                                                widget.starVar?.toString(),
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
