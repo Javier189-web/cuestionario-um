@@ -57,8 +57,6 @@ class _MobileNavWidgetState extends State<MobileNavWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return Material(
       color: Colors.transparent,
       elevation: 0.0,

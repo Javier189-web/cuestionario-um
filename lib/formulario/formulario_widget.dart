@@ -46,8 +46,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
     return FutureBuilder<ApiCallResponse>(
       future: PreguntasCall.call(
         areaId: widget.codigoqr,
@@ -341,12 +339,44 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                     preguntasVar[
                                                                         preguntasVarIndex];
                                                                 return Expanded(
-                                                                  child:
-                                                                      PreguntasWidget(
-                                                                    key: Key(
-                                                                        'Key7s1_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                    varEstrellas:
-                                                                        true,
+                                                                  child: FutureBuilder<
+                                                                      ApiCallResponse>(
+                                                                    future:
+                                                                        PreguntasCall
+                                                                            .call(
+                                                                      areaId: widget
+                                                                          .codigoqr,
+                                                                    ),
+                                                                    builder:
+                                                                        (context,
+                                                                            snapshot) {
+                                                                      // Customize what your widget looks like when it's loading.
+                                                                      if (!snapshot
+                                                                          .hasData) {
+                                                                        return Center(
+                                                                          child:
+                                                                              SizedBox(
+                                                                            width:
+                                                                                50.0,
+                                                                            height:
+                                                                                50.0,
+                                                                            child:
+                                                                                CircularProgressIndicator(
+                                                                              color: FlutterFlowTheme.of(context).primary,
+                                                                            ),
+                                                                          ),
+                                                                        );
+                                                                      }
+                                                                      final preguntasPreguntasResponse =
+                                                                          snapshot
+                                                                              .data!;
+                                                                      return PreguntasWidget(
+                                                                        key: Key(
+                                                                            'Key7s1_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                        varEstrellas:
+                                                                            false,
+                                                                      );
+                                                                    },
                                                                   ),
                                                                 );
                                                               }),
@@ -477,18 +507,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                     },
                                   ),
                                 ],
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
-                              ),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [],
                               ),
                             ),
                             Container(
@@ -647,6 +665,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
+                                            respuestaNumero: 999,
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
