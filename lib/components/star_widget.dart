@@ -13,7 +13,7 @@ class StarWidget extends StatefulWidget {
     this.estrellasVar,
   }) : super(key: key);
 
-  final List<String>? estrellasVar;
+  final double? estrellasVar;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -54,15 +54,14 @@ class _StarWidgetState extends State<StarWidget> {
             color: FlutterFlowTheme.of(context).tertiary,
           ),
           direction: Axis.horizontal,
-          initialRating: _model.ratingBarValue ??=
-              widget.estrellasVar!.length.toDouble(),
+          initialRating: _model.ratingBarValue ??= widget.estrellasVar!,
           unratedColor: FlutterFlowTheme.of(context).accent3,
           itemCount: 5,
           itemSize: 30.0,
           glowColor: FlutterFlowTheme.of(context).tertiary,
         ),
         Text(
-          'Hello World',
+          _model.ratingBarValue.toString(),
           style: FlutterFlowTheme.of(context).bodyMedium.override(
                 fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
                 fontWeight: FontWeight.w500,
