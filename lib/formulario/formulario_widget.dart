@@ -346,8 +346,12 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                     key: Key(
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
                                                                     estrellasVar:
-                                                                        widget
-                                                                            .estrellasVar,
+                                                                        valueOrDefault<
+                                                                            double>(
+                                                                      widget
+                                                                          .estrellasVar,
+                                                                      2.0,
+                                                                    ),
                                                                   ),
                                                                 );
                                                               }),
