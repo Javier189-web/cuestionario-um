@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -41,19 +42,39 @@ class _StarWidgetState extends State<StarWidget> {
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        RatingBar.builder(
-          onRatingUpdate: (newValue) =>
-              setState(() => _model.ratingBarValue = newValue),
-          itemBuilder: (context, index) => Icon(
-            Icons.star_rounded,
-            color: FlutterFlowTheme.of(context).tertiary,
+        FutureBuilder<ApiCallResponse>(
+          future: RespuestasCall.call(
+            respuestaNumero: _model.ratingBarValue.toString(),
           ),
-          direction: Axis.horizontal,
-          initialRating: _model.ratingBarValue ??= 1.0,
-          unratedColor: FlutterFlowTheme.of(context).accent3,
-          itemCount: 5,
-          itemSize: 30.0,
-          glowColor: FlutterFlowTheme.of(context).tertiary,
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
+              );
+            }
+            final ratingBarRespuestasResponse = snapshot.data!;
+            return RatingBar.builder(
+              onRatingUpdate: (newValue) =>
+                  setState(() => _model.ratingBarValue = newValue),
+              itemBuilder: (context, index) => Icon(
+                Icons.star_rounded,
+                color: FlutterFlowTheme.of(context).tertiary,
+              ),
+              direction: Axis.horizontal,
+              initialRating: _model.ratingBarValue ??= 1.0,
+              unratedColor: FlutterFlowTheme.of(context).accent3,
+              itemCount: 5,
+              itemSize: 30.0,
+              glowColor: FlutterFlowTheme.of(context).tertiary,
+            );
+          },
         ),
         Text(
           _model.ratingBarValue.toString(),
