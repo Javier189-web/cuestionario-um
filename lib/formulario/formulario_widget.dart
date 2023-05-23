@@ -345,6 +345,9 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                       StarWidget(
                                                                     key: Key(
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                    ratingVar:
+                                                                        widget
+                                                                            .ratingVar!,
                                                                   ),
                                                                 );
                                                               }),
@@ -641,7 +644,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .first
                                                     .toString(),
                                             respuestaNumero:
-                                                widget.ratingVar?[0],
+                                                widget.ratingVar?.first,
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
