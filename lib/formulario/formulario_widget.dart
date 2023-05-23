@@ -472,6 +472,11 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                       );
                                     },
                                   ),
+                                  Text(
+                                    'Hello World',
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
                                 ],
                               ),
                             ),
