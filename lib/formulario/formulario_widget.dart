@@ -14,12 +14,10 @@ class FormularioWidget extends StatefulWidget {
   const FormularioWidget({
     Key? key,
     this.codigoqr,
-    this.starVar,
     this.varEstrellas,
   }) : super(key: key);
 
   final String? codigoqr;
-  final double? starVar;
   final List<double>? varEstrellas;
 
   @override
@@ -480,7 +478,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                     },
                                   ),
                                   Text(
-                                    widget.starVar.toString(),
+                                    widget.varEstrellas!.first.toString(),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
