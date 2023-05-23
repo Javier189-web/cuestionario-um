@@ -347,7 +347,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                         'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
                                                                     ratingVar:
                                                                         widget
-                                                                            .ratingVar!,
+                                                                            .ratingVar,
                                                                   ),
                                                                 );
                                                               }),

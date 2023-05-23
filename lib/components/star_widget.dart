@@ -10,7 +10,7 @@ export 'star_model.dart';
 class StarWidget extends StatefulWidget {
   const StarWidget({
     Key? key,
-    required this.ratingVar,
+    this.ratingVar,
   }) : super(key: key);
 
   final List<double>? ratingVar;
