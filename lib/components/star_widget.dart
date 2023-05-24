@@ -63,7 +63,7 @@ class _StarWidgetState extends State<StarWidget> {
           highlightColor: Colors.transparent,
           onTap: () async {
             _model.apiResultxb0 = await RespuestasCall.call(
-              codigo: 1999989,
+              codigo: 1999988,
               preguntaId: '3de98f8a-788f-4382-b9e2-3c8bda630a81',
               respuestaTexto: 'ffffff',
             );
