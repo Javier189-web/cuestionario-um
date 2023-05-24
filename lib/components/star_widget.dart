@@ -48,7 +48,7 @@ class _StarWidgetState extends State<StarWidget> {
             _model.apiResult0b0 = await RespuestasCall.call(
               preguntaId: '2caf39c0-ffd7-4f9c-9c21-d831b03203bb',
               codigo: 1999989,
-              respuestaNumero: _model.ratingBarValue.toString(),
+              respuestaNumero: _model.ratingBarValue,
             );
             if (!(_model.apiResult0b0?.succeeded ?? true)) {
               await showDialog(
