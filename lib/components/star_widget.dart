@@ -66,6 +66,7 @@ class _StarWidgetState extends State<StarWidget> {
               codigo: 1999988,
               preguntaId: '3de98f8a-788f-4382-b9e2-3c8bda630a81',
               respuestaTexto: _model.ratingBarValue.toString(),
+              respuestaNumero: _model.ratingBarValue.toString(),
             );
             if ((_model.apiResultxb0?.succeeded ?? true)) {
               await showDialog(

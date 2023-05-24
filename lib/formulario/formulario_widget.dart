@@ -627,7 +627,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                               await RespuestasCall.call(
                                             respuestaTexto:
                                                 _model.textController.text,
-                                            codigo: 1999988,
+                                            codigo: 1999987,
                                             preguntaId:
                                                 (PreguntaTextoCall.preguntaId(
                                               buttonPreguntaTextoResponse
@@ -638,7 +638,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                     .toList()
                                                     .first
                                                     .toString(),
-                                            respuestaNumero: '2',
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
