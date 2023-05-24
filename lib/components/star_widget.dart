@@ -61,6 +61,10 @@ class _StarWidgetState extends State<StarWidget> {
           itemSize: 30.0,
           glowColor: FlutterFlowTheme.of(context).tertiary,
         ),
+        Text(
+          widget.codigoqr!,
+          style: FlutterFlowTheme.of(context).bodyMedium,
+        ),
         InkWell(
           splashColor: Colors.transparent,
           focusColor: Colors.transparent,
