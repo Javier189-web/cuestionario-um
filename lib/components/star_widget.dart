@@ -45,10 +45,12 @@ class _StarWidgetState extends State<StarWidget> {
         RatingBar.builder(
           onRatingUpdate: (newValue) async {
             setState(() => _model.ratingBarValue = newValue);
-            _model.varEstre = await RespuestasCall.call(
+            _model.apiResult0b0 = await RespuestasCall.call(
+              preguntaId: '2caf39c0-ffd7-4f9c-9c21-d831b03203bb',
+              codigo: 1999989,
               respuestaNumero: _model.ratingBarValue.toString(),
             );
-            if (!(_model.varEstre?.succeeded ?? true)) {
+            if (!(_model.apiResult0b0?.succeeded ?? true)) {
               await showDialog(
                 context: context,
                 builder: (alertDialogContext) {

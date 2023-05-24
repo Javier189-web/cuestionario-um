@@ -12,7 +12,7 @@ class StarModel extends FlutterFlowModel {
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
   // Stores action output result for [Backend Call - API (Respuestas)] action in RatingBar widget.
-  ApiCallResponse? varEstre;
+  ApiCallResponse? apiResult0b0;
 
   /// Initialization and disposal methods.
 
