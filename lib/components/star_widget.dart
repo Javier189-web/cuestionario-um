@@ -11,10 +11,11 @@ export 'star_model.dart';
 class StarWidget extends StatefulWidget {
   const StarWidget({
     Key? key,
-    this.codigoqr,
-  }) : super(key: key);
+    String? codigoqr,
+  })  : this.codigoqr = codigoqr ?? '1',
+        super(key: key);
 
-  final String? codigoqr;
+  final String codigoqr;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -62,7 +63,7 @@ class _StarWidgetState extends State<StarWidget> {
           glowColor: FlutterFlowTheme.of(context).tertiary,
         ),
         Text(
-          widget.codigoqr!,
+          widget.codigoqr,
           style: FlutterFlowTheme.of(context).bodyMedium,
         ),
         InkWell(
