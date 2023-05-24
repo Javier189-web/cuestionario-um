@@ -9,7 +9,12 @@ import 'star_model.dart';
 export 'star_model.dart';
 
 class StarWidget extends StatefulWidget {
-  const StarWidget({Key? key}) : super(key: key);
+  const StarWidget({
+    Key? key,
+    this.codigoqr,
+  }) : super(key: key);
+
+  final String? codigoqr;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -48,7 +53,6 @@ class _StarWidgetState extends State<StarWidget> {
             _model.apiResult0b0 = await RespuestasCall.call(
               preguntaId: '2caf39c0-ffd7-4f9c-9c21-d831b03203bb',
               codigo: 1999989,
-              respuestaNumero: _model.ratingBarValue,
             );
             if (!(_model.apiResult0b0?.succeeded ?? true)) {
               await showDialog(
@@ -89,6 +93,10 @@ class _StarWidgetState extends State<StarWidget> {
                 useGoogleFonts: GoogleFonts.asMap()
                     .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
               ),
+        ),
+        Text(
+          widget.codigoqr!,
+          style: FlutterFlowTheme.of(context).bodyMedium,
         ),
       ],
     );
