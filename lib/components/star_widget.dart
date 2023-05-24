@@ -9,7 +9,12 @@ import 'star_model.dart';
 export 'star_model.dart';
 
 class StarWidget extends StatefulWidget {
-  const StarWidget({Key? key}) : super(key: key);
+  const StarWidget({
+    Key? key,
+    this.codigoqr,
+  }) : super(key: key);
+
+  final String? codigoqr;
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
