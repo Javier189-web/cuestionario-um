@@ -98,6 +98,7 @@ class _StarWidgetState extends State<StarWidget> {
                           .toList()
                           .first
                           .toString(),
+                      respuestaTexto: 'hola',
                     );
                     if (!(_model.apiResult12f?.succeeded ?? true)) {
                       await showDialog(
@@ -132,10 +133,6 @@ class _StarWidgetState extends State<StarWidget> {
                   glowColor: FlutterFlowTheme.of(context).tertiary,
                 );
               },
-            ),
-            Text(
-              FFAppState().idAreaQr,
-              style: FlutterFlowTheme.of(context).bodyMedium,
             ),
           ],
         );
