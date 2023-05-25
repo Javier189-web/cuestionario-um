@@ -1,3 +1,4 @@
+import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,8 @@ class StarModel extends FlutterFlowModel {
 
   // State field(s) for RatingBar widget.
   double? ratingBarValue;
+  // Stores action output result for [Backend Call - API (Respuestas)] action in RatingBar widget.
+  ApiCallResponse? apiResultp4o;
 
   /// Initialization and disposal methods.
 

@@ -57,6 +57,8 @@ class _FormularioCopyWidgetState extends State<FormularioCopyWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: PreguntasCall.call(
         areaId: widget.codigoqr,

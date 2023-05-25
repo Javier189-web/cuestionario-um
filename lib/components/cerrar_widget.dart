@@ -38,6 +38,8 @@ class _CerrarWidgetState extends State<CerrarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Padding(
       padding: EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 12.0, 0.0),
       child: FlutterFlowIconButton(
