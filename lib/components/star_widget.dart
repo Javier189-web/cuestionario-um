@@ -89,7 +89,7 @@ class _StarWidgetState extends State<StarWidget> {
                       FFAppState().numStar = _model.ratingBarValue!;
                     });
                     _model.apiResult12f = await RespuestasCall.call(
-                      codigo: 999998,
+                      codigo: 1999987,
                       respuestaNumero: FFAppState().numStar.toString(),
                       preguntaId: (PreguntasCall.idPreguntaN(
                         columnPreguntasResponse.jsonBody,
