@@ -2,7 +2,6 @@ import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -29,13 +28,6 @@ class _StarWidgetState extends State<StarWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => StarModel());
-
-    // On component load action.
-    SchedulerBinding.instance.addPostFrameCallback((_) async {
-      setState(() {
-        FFAppState().numStar = _model.ratingBarValue!;
-      });
-    });
   }
 
   @override
@@ -73,8 +65,12 @@ class _StarWidgetState extends State<StarWidget> {
             }
             final ratingBarRespuestasResponse = snapshot.data!;
             return RatingBar.builder(
-              onRatingUpdate: (newValue) =>
-                  setState(() => _model.ratingBarValue = newValue),
+              onRatingUpdate: (newValue) {
+                setState(() => _model.ratingBarValue = newValue);
+                setState(() {
+                  FFAppState().numStar = _model.ratingBarValue!;
+                });
+              },
               itemBuilder: (context, index) => Icon(
                 Icons.star_rounded,
                 color: FlutterFlowTheme.of(context).tertiary,
