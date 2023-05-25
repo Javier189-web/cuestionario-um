@@ -65,7 +65,7 @@ class _StarWidgetState extends State<StarWidget> {
             FutureBuilder<ApiCallResponse>(
               future: FFAppState().polo(
                 requestFn: () => RespuestasCall.call(
-                  respuestaNumero: _model.ratingBarValue?.toString(),
+                  respuestaNumero: _model.ratingBarValue?.round(),
                 ),
               ),
               builder: (context, snapshot) {
@@ -90,7 +90,6 @@ class _StarWidgetState extends State<StarWidget> {
                     });
                     _model.apiResult12f = await RespuestasCall.call(
                       codigo: 1999987,
-                      respuestaNumero: FFAppState().numStar.toString(),
                       preguntaId: (PreguntasCall.idPreguntaN(
                         columnPreguntasResponse.jsonBody,
                       ) as List)
@@ -98,7 +97,6 @@ class _StarWidgetState extends State<StarWidget> {
                           .toList()
                           .first
                           .toString(),
-                      respuestaTexto: 'hola',
                     );
                     if (!(_model.apiResult12f?.succeeded ?? true)) {
                       await showDialog(
