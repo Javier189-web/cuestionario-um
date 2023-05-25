@@ -9,13 +9,7 @@ import 'star_model.dart';
 export 'star_model.dart';
 
 class StarWidget extends StatefulWidget {
-  const StarWidget({
-    Key? key,
-    String? codigoqr,
-  })  : this.codigoqr = codigoqr ?? '1',
-        super(key: key);
-
-  final String codigoqr;
+  const StarWidget({Key? key}) : super(key: key);
 
   @override
   _StarWidgetState createState() => _StarWidgetState();
@@ -45,83 +39,50 @@ class _StarWidgetState extends State<StarWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
-        RatingBar.builder(
-          onRatingUpdate: (newValue) =>
-              setState(() => _model.ratingBarValue = newValue),
-          itemBuilder: (context, index) => Icon(
-            Icons.star_rounded,
-            color: FlutterFlowTheme.of(context).tertiary,
+        FutureBuilder<ApiCallResponse>(
+          future: FFAppState().polo(
+            requestFn: () => RespuestasCall.call(
+              respuestaNumero: _model.ratingBarValue?.toString(),
+            ),
           ),
-          direction: Axis.horizontal,
-          initialRating: _model.ratingBarValue ??= 1.0,
-          unratedColor: FlutterFlowTheme.of(context).accent3,
-          itemCount: 5,
-          itemSize: 30.0,
-          glowColor: FlutterFlowTheme.of(context).tertiary,
-        ),
-        Text(
-          widget.codigoqr,
-          style: FlutterFlowTheme.of(context).bodyMedium,
-        ),
-        InkWell(
-          splashColor: Colors.transparent,
-          focusColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          onTap: () async {
-            _model.apiResultxb0 = await RespuestasCall.call(
-              codigo: 1999987,
-              preguntaId: '3de98f8a-788f-4382-b9e2-3c8bda630a81',
-              respuestaNumero: '1',
-            );
-            if ((_model.apiResultxb0?.succeeded ?? true)) {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text('yes'),
-                    content: Text('yes'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
-              );
-            } else {
-              await showDialog(
-                context: context,
-                builder: (alertDialogContext) {
-                  return AlertDialog(
-                    title: Text('f'),
-                    content: Text('f'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(alertDialogContext),
-                        child: Text('Ok'),
-                      ),
-                    ],
-                  );
-                },
+          builder: (context, snapshot) {
+            // Customize what your widget looks like when it's loading.
+            if (!snapshot.hasData) {
+              return Center(
+                child: SizedBox(
+                  width: 50.0,
+                  height: 50.0,
+                  child: CircularProgressIndicator(
+                    color: FlutterFlowTheme.of(context).primary,
+                  ),
+                ),
               );
             }
-
-            setState(() {});
+            final ratingBarRespuestasResponse = snapshot.data!;
+            return RatingBar.builder(
+              onRatingUpdate: (newValue) {
+                setState(() => _model.ratingBarValue = newValue);
+                setState(() {
+                  FFAppState().starValue = _model.ratingBarValue!;
+                });
+              },
+              itemBuilder: (context, index) => Icon(
+                Icons.star_rounded,
+                color: FlutterFlowTheme.of(context).tertiary,
+              ),
+              direction: Axis.horizontal,
+              initialRating: _model.ratingBarValue ??= 1.0,
+              unratedColor: FlutterFlowTheme.of(context).accent3,
+              itemCount: 5,
+              itemSize: 30.0,
+              glowColor: FlutterFlowTheme.of(context).tertiary,
+            );
           },
-          child: Text(
-            _model.ratingBarValue.toString(),
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
-                  fontWeight: FontWeight.w500,
-                  useGoogleFonts: GoogleFonts.asMap().containsKey(
-                      FlutterFlowTheme.of(context).bodyMediumFamily),
-                ),
-          ),
         ),
       ],
     );

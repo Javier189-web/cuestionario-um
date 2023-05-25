@@ -46,6 +46,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
 
   @override
   Widget build(BuildContext context) {
+    context.watch<FFAppState>();
+
     return FutureBuilder<ApiCallResponse>(
       future: PreguntasCall.call(
         areaId: widget.codigoqr,
@@ -342,7 +344,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                   child:
                                                                       StarWidget(
                                                                     key: Key(
-                                                                        'Keykvi_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                                        'Keyfje_${preguntasVarIndex}_of_${preguntasVar.length}'),
                                                                   ),
                                                                 );
                                                               }),
@@ -471,6 +473,11 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             .bodyMedium,
                                       );
                                     },
+                                  ),
+                                  Text(
+                                    FFAppState().starValue.toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
                                   ),
                                 ],
                               ),
@@ -601,8 +608,8 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   FutureBuilder<ApiCallResponse>(
-                                    future: PreguntaTextoCall.call(
-                                      areaId: widget.codigoqr,
+                                    future: FFAppState().polo(
+                                      requestFn: () => RespuestasCall.call(),
                                     ),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
@@ -619,7 +626,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           ),
                                         );
                                       }
-                                      final buttonPreguntaTextoResponse =
+                                      final buttonRespuestasResponse =
                                           snapshot.data!;
                                       return FFButtonWidget(
                                         onPressed: () async {
@@ -628,16 +635,6 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             respuestaTexto:
                                                 _model.textController.text,
                                             codigo: 1999987,
-                                            preguntaId:
-                                                (PreguntaTextoCall.preguntaId(
-                                              buttonPreguntaTextoResponse
-                                                  .jsonBody,
-                                            ) as List)
-                                                    .map<String>(
-                                                        (s) => s.toString())
-                                                    .toList()
-                                                    .first
-                                                    .toString(),
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
