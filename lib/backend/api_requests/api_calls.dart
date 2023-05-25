@@ -96,7 +96,7 @@ class PreguntaTextoCall {
 class RespuestasCall {
   static Future<ApiCallResponse> call({
     String? preguntaId = '',
-    int? respuestaNumero,
+    String? respuestaNumero = '',
     String? respuestaTexto = '',
     int? codigo,
   }) {

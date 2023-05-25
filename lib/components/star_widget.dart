@@ -1,4 +1,3 @@
-import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
@@ -39,68 +38,33 @@ class _StarWidgetState extends State<StarWidget> {
 
   @override
   Widget build(BuildContext context) {
-    context.watch<FFAppState>();
-
-    return FutureBuilder<ApiCallResponse>(
-      future: PreguntasCall.call(
-        areaId: FFAppState().idAreaQr,
-      ),
-      builder: (context, snapshot) {
-        // Customize what your widget looks like when it's loading.
-        if (!snapshot.hasData) {
-          return Center(
-            child: SizedBox(
-              width: 50.0,
-              height: 50.0,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primary,
+    return Column(
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        RatingBar.builder(
+          onRatingUpdate: (newValue) =>
+              setState(() => _model.ratingBarValue = newValue),
+          itemBuilder: (context, index) => Icon(
+            Icons.star_rounded,
+            color: FlutterFlowTheme.of(context).tertiary,
+          ),
+          direction: Axis.horizontal,
+          initialRating: _model.ratingBarValue ??= 1.0,
+          unratedColor: FlutterFlowTheme.of(context).accent3,
+          itemCount: 5,
+          itemSize: 30.0,
+          glowColor: FlutterFlowTheme.of(context).tertiary,
+        ),
+        Text(
+          _model.ratingBarValue.toString(),
+          style: FlutterFlowTheme.of(context).bodyMedium.override(
+                fontFamily: FlutterFlowTheme.of(context).bodyMediumFamily,
+                fontWeight: FontWeight.w500,
+                useGoogleFonts: GoogleFonts.asMap()
+                    .containsKey(FlutterFlowTheme.of(context).bodyMediumFamily),
               ),
-            ),
-          );
-        }
-        final columnPreguntasResponse = snapshot.data!;
-        return Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            FutureBuilder<ApiCallResponse>(
-              future: FFAppState().polo(
-                requestFn: () => RespuestasCall.call(
-                  respuestaNumero: _model.ratingBarValue?.round(),
-                ),
-              ),
-              builder: (context, snapshot) {
-                // Customize what your widget looks like when it's loading.
-                if (!snapshot.hasData) {
-                  return Center(
-                    child: SizedBox(
-                      width: 50.0,
-                      height: 50.0,
-                      child: CircularProgressIndicator(
-                        color: FlutterFlowTheme.of(context).primary,
-                      ),
-                    ),
-                  );
-                }
-                final ratingBarRespuestasResponse = snapshot.data!;
-                return RatingBar.builder(
-                  onRatingUpdate: (newValue) =>
-                      setState(() => _model.ratingBarValue = newValue),
-                  itemBuilder: (context, index) => Icon(
-                    Icons.star_rounded,
-                    color: FlutterFlowTheme.of(context).tertiary,
-                  ),
-                  direction: Axis.horizontal,
-                  initialRating: _model.ratingBarValue ??= 1.0,
-                  unratedColor: FlutterFlowTheme.of(context).accent3,
-                  itemCount: 5,
-                  itemSize: 30.0,
-                  glowColor: FlutterFlowTheme.of(context).tertiary,
-                );
-              },
-            ),
-          ],
-        );
-      },
+        ),
+      ],
     );
   }
 }
