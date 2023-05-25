@@ -5,6 +5,7 @@ import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'formulario_model.dart';
@@ -32,6 +33,13 @@ class _FormularioWidgetState extends State<FormularioWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FormularioModel());
+
+    // On page load action.
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      setState(() {
+        FFAppState().idAreaQr = widget.codigoqr!;
+      });
+    });
 
     _model.textController ??= TextEditingController();
   }
@@ -476,6 +484,11 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                   ),
                                   Text(
                                     FFAppState().numStar.toString(),
+                                    style:
+                                        FlutterFlowTheme.of(context).bodyMedium,
+                                  ),
+                                  Text(
+                                    FFAppState().idAreaQr,
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),
