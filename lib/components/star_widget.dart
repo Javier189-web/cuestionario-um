@@ -96,9 +96,7 @@ class _StarWidgetState extends State<StarWidget> {
                       ) as List)
                           .map<String>((s) => s.toString())
                           .toList()
-                          .where((e) => e)
-                          .toList()
-                          .length
+                          .first
                           .toString(),
                     );
                     if (!(_model.apiResult12f?.succeeded ?? true)) {
