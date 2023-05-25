@@ -68,10 +68,7 @@ class _StarWidgetState extends State<StarWidget> {
               onRatingUpdate: (newValue) {
                 setState(() => _model.ratingBarValue = newValue);
                 setState(() {
-                  FFAppState().numStar = valueOrDefault<double>(
-                    _model.ratingBarValue,
-                    1.0,
-                  );
+                  FFAppState().numStar = _model.ratingBarValue!;
                 });
               },
               itemBuilder: (context, index) => Icon(

@@ -26,7 +26,7 @@ class FFAppState extends ChangeNotifier {
     _idAreaQr = _value;
   }
 
-  double _numStar = 0.0;
+  double _numStar = 1;
   double get numStar => _numStar;
   set numStar(double _value) {
     _numStar = _value;
