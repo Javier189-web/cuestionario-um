@@ -530,7 +530,15 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           _model.apiResultadoRespuestas =
                                               await RespuestasCall.call(
                                             preguntaId:
-                                                'f185186d-3a29-4f9c-98fd-e607cb44147a',
+                                                (PreguntaTextoCall.preguntaId(
+                                              buttonPreguntaTextoResponse
+                                                  .jsonBody,
+                                            ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()
+                                                    .first
+                                                    .toString(),
                                             respuestaTexto:
                                                 _model.textController.text,
                                             codigo: 1999985,
