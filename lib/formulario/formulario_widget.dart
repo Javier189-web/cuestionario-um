@@ -475,7 +475,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                     },
                                   ),
                                   Text(
-                                    FFAppState().starValue.toString(),
+                                    FFAppState().numStar.toString(),
                                     style:
                                         FlutterFlowTheme.of(context).bodyMedium,
                                   ),

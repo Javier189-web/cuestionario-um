@@ -26,10 +26,10 @@ class FFAppState extends ChangeNotifier {
     _idAreaQr = _value;
   }
 
-  double _starValue = 0.0;
-  double get starValue => _starValue;
-  set starValue(double _value) {
-    _starValue = _value;
+  double _numStar = 0.0;
+  double get numStar => _numStar;
+  set numStar(double _value) {
+    _numStar = _value;
   }
 
   final _poloManager = FutureRequestManager<ApiCallResponse>();
