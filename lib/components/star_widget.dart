@@ -83,42 +83,8 @@ class _StarWidgetState extends State<StarWidget> {
                 }
                 final ratingBarRespuestasResponse = snapshot.data!;
                 return RatingBar.builder(
-                  onRatingUpdate: (newValue) async {
-                    setState(() => _model.ratingBarValue = newValue);
-                    setState(() {
-                      FFAppState().numStar = _model.ratingBarValue!;
-                    });
-                    _model.apiResult12f = await RespuestasCall.call(
-                      codigo: 1999987,
-                      preguntaId: (PreguntasCall.idPreguntaN(
-                        columnPreguntasResponse.jsonBody,
-                      ) as List)
-                          .map<String>((s) => s.toString())
-                          .toList()
-                          .first
-                          .toString(),
-                    );
-                    if (!(_model.apiResult12f?.succeeded ?? true)) {
-                      await showDialog(
-                        context: context,
-                        builder: (alertDialogContext) {
-                          return AlertDialog(
-                            title: Text('f'),
-                            content: Text('f'),
-                            actions: [
-                              TextButton(
-                                onPressed: () =>
-                                    Navigator.pop(alertDialogContext),
-                                child: Text('Ok'),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-
-                    setState(() {});
-                  },
+                  onRatingUpdate: (newValue) =>
+                      setState(() => _model.ratingBarValue = newValue),
                   itemBuilder: (context, index) => Icon(
                     Icons.star_rounded,
                     color: FlutterFlowTheme.of(context).tertiary,

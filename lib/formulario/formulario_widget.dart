@@ -148,84 +148,62 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 color: FlutterFlowTheme.of(context)
                                     .secondaryBackground,
                               ),
-                              child: FutureBuilder<ApiCallResponse>(
-                                future: PreguntasCall.call(
-                                  areaId: widget.codigoqr,
-                                ),
-                                builder: (context, snapshot) {
-                                  // Customize what your widget looks like when it's loading.
-                                  if (!snapshot.hasData) {
-                                    return Center(
-                                      child: SizedBox(
-                                        width: 50.0,
-                                        height: 50.0,
-                                        child: CircularProgressIndicator(
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                  final columnPreguntasResponse =
-                                      snapshot.data!;
-                                  return Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Container(
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.9,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.4,
-                                        child: Stack(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    width:
+                                        MediaQuery.of(context).size.width * 0.9,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.4,
+                                    child: Stack(
+                                      children: [
+                                        Row(
+                                          mainAxisSize: MainAxisSize.max,
                                           children: [
-                                            Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.4,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      1.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.4,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  1.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
-                                                  ),
-                                                  child: FutureBuilder<
-                                                      ApiCallResponse>(
-                                                    future: PreguntasCall.call(
-                                                      areaId: widget.codigoqr,
-                                                    ),
-                                                    builder:
-                                                        (context, snapshot) {
-                                                      // Customize what your widget looks like when it's loading.
-                                                      if (!snapshot.hasData) {
-                                                        return Center(
-                                                          child: SizedBox(
-                                                            width: 50.0,
-                                                            height: 50.0,
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              color: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .primary,
-                                                            ),
-                                                          ),
-                                                        );
-                                                      }
-                                                      final columnPreguntasResponse =
-                                                          snapshot.data!;
-                                                      return Builder(
-                                                        builder: (context) {
-                                                          final preguntaVar = (PreguntasCall
+                                              ),
+                                              child: FutureBuilder<
+                                                  ApiCallResponse>(
+                                                future: PreguntasCall.call(
+                                                  areaId: widget.codigoqr,
+                                                ),
+                                                builder: (context, snapshot) {
+                                                  // Customize what your widget looks like when it's loading.
+                                                  if (!snapshot.hasData) {
+                                                    return Center(
+                                                      child: SizedBox(
+                                                        width: 50.0,
+                                                        height: 50.0,
+                                                        child:
+                                                            CircularProgressIndicator(
+                                                          color: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .primary,
+                                                        ),
+                                                      ),
+                                                    );
+                                                  }
+                                                  final columnPreguntasResponse =
+                                                      snapshot.data!;
+                                                  return Builder(
+                                                    builder: (context) {
+                                                      final preguntaVar =
+                                                          (PreguntasCall
                                                                       .preguntas(
                                                                 columnPreguntasResponse
                                                                     .jsonBody,
@@ -236,91 +214,88 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                   .toList()
                                                                   ?.toList() ??
                                                               [];
-                                                          return Column(
-                                                            mainAxisSize:
-                                                                MainAxisSize
-                                                                    .max,
-                                                            mainAxisAlignment:
-                                                                MainAxisAlignment
-                                                                    .spaceAround,
-                                                            children: List.generate(
-                                                                preguntaVar
-                                                                    .length,
-                                                                (preguntaVarIndex) {
-                                                              final preguntaVarItem =
-                                                                  preguntaVar[
-                                                                      preguntaVarIndex];
-                                                              return Text(
-                                                                preguntaVarItem,
-                                                                style: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .bodyMedium
-                                                                    .override(
-                                                                      fontFamily:
+                                                      return Column(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceAround,
+                                                        children: List.generate(
+                                                            preguntaVar.length,
+                                                            (preguntaVarIndex) {
+                                                          final preguntaVarItem =
+                                                              preguntaVar[
+                                                                  preguntaVarIndex];
+                                                          return Text(
+                                                            preguntaVarItem,
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .bodyMediumFamily,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  useGoogleFonts: GoogleFonts
+                                                                          .asMap()
+                                                                      .containsKey(
                                                                           FlutterFlowTheme.of(context)
-                                                                              .bodyMediumFamily,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      useGoogleFonts: GoogleFonts
-                                                                              .asMap()
-                                                                          .containsKey(
-                                                                              FlutterFlowTheme.of(context).bodyMediumFamily),
-                                                                    ),
-                                                              );
-                                                            }),
+                                                                              .bodyMediumFamily),
+                                                                ),
                                                           );
-                                                        },
+                                                        }),
                                                       );
                                                     },
-                                                  ),
-                                                ),
-                                                Container(
-                                                  width: MediaQuery.of(context)
-                                                          .size
-                                                          .width *
-                                                      0.5,
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      1.0,
-                                                  decoration: BoxDecoration(
-                                                    color: FlutterFlowTheme.of(
-                                                            context)
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.5,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  1.0,
+                                              decoration: BoxDecoration(
+                                                color:
+                                                    FlutterFlowTheme.of(context)
                                                         .secondaryBackground,
+                                              ),
+                                              child: Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: FutureBuilder<
+                                                    ApiCallResponse>(
+                                                  future: PreguntasCall.call(
+                                                    areaId: widget.codigoqr,
                                                   ),
-                                                  child: Align(
-                                                    alignment:
-                                                        AlignmentDirectional(
-                                                            0.0, 0.0),
-                                                    child: FutureBuilder<
-                                                        ApiCallResponse>(
-                                                      future:
-                                                          PreguntasCall.call(
-                                                        areaId: widget.codigoqr,
-                                                      ),
-                                                      builder:
-                                                          (context, snapshot) {
-                                                        // Customize what your widget looks like when it's loading.
-                                                        if (!snapshot.hasData) {
-                                                          return Center(
-                                                            child: SizedBox(
-                                                              width: 50.0,
-                                                              height: 50.0,
-                                                              child:
-                                                                  CircularProgressIndicator(
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .primary,
-                                                              ),
-                                                            ),
-                                                          );
-                                                        }
-                                                        final columnPreguntasResponse =
-                                                            snapshot.data!;
-                                                        return Builder(
-                                                          builder: (context) {
-                                                            final preguntasVar = (PreguntasCall
+                                                  builder: (context, snapshot) {
+                                                    // Customize what your widget looks like when it's loading.
+                                                    if (!snapshot.hasData) {
+                                                      return Center(
+                                                        child: SizedBox(
+                                                          width: 50.0,
+                                                          height: 50.0,
+                                                          child:
+                                                              CircularProgressIndicator(
+                                                            color: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .primary,
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }
+                                                    final columnPreguntasResponse =
+                                                        snapshot.data!;
+                                                    return Builder(
+                                                      builder: (context) {
+                                                        final preguntasVar =
+                                                            (PreguntasCall
                                                                         .preguntas(
                                                                   columnPreguntasResponse
                                                                       .jsonBody,
@@ -331,54 +306,42 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                                     .toList()
                                                                     ?.toList() ??
                                                                 [];
-                                                            return Column(
-                                                              mainAxisSize:
-                                                                  MainAxisSize
-                                                                      .max,
-                                                              mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .spaceBetween,
-                                                              crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .center,
-                                                              children: List.generate(
-                                                                  preguntasVar
-                                                                      .length,
-                                                                  (preguntasVarIndex) {
-                                                                final preguntasVarItem =
-                                                                    preguntasVar[
-                                                                        preguntasVarIndex];
-                                                                return Expanded(
-                                                                  child:
-                                                                      StarWidget(
-                                                                    key: Key(
-                                                                        'Keyfje_${preguntasVarIndex}_of_${preguntasVar.length}'),
-                                                                  ),
-                                                                );
-                                                              }),
+                                                        return Column(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .spaceBetween,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: List.generate(
+                                                              preguntasVar
+                                                                  .length,
+                                                              (preguntasVarIndex) {
+                                                            final preguntasVarItem =
+                                                                preguntasVar[
+                                                                    preguntasVarIndex];
+                                                            return Expanded(
+                                                              child: StarWidget(
+                                                                key: Key(
+                                                                    'Keyfje_${preguntasVarIndex}_of_${preguntasVar.length}'),
+                                                              ),
                                                             );
-                                                          },
+                                                          }),
                                                         );
                                                       },
-                                                    ),
-                                                  ),
+                                                    );
+                                                  },
                                                 ),
-                                              ],
+                                              ),
                                             ),
                                           ],
                                         ),
-                                      ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: 100.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .secondaryBackground,
+                                      ],
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             Container(
@@ -529,18 +492,20 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                         onPressed: () async {
                                           _model.apiResultadoRespuestas =
                                               await RespuestasCall.call(
-                                            preguntaId:
-                                                (PreguntaTextoCall.preguntaId(
-                                              buttonPreguntaTextoResponse
-                                                  .jsonBody,
-                                            ) as List)
-                                                    .map<String>(
-                                                        (s) => s.toString())
-                                                    .toList()[0]
-                                                    .toString(),
                                             respuestaTexto:
                                                 _model.textController.text,
-                                            codigo: 1999985,
+                                            codigo: 1999984,
+                                            preguntaId: valueOrDefault<String>(
+                                              (PreguntaTextoCall.preguntaId(
+                                                buttonPreguntaTextoResponse
+                                                    .jsonBody,
+                                              ) as List)
+                                                  .map<String>(
+                                                      (s) => s.toString())
+                                                  .toList()[0]
+                                                  .toString(),
+                                              '0',
+                                            ),
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
