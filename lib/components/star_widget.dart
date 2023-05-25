@@ -133,6 +133,10 @@ class _StarWidgetState extends State<StarWidget> {
                 );
               },
             ),
+            Text(
+              FFAppState().idAreaQr,
+              style: FlutterFlowTheme.of(context).bodyMedium,
+            ),
           ],
         );
       },
