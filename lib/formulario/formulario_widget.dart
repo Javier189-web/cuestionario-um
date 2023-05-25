@@ -536,8 +536,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             ) as List)
                                                     .map<String>(
                                                         (s) => s.toString())
-                                                    .toList()
-                                                    .last
+                                                    .toList()[0]
                                                     .toString(),
                                             respuestaTexto:
                                                 _model.textController.text,
