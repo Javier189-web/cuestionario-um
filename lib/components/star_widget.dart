@@ -76,7 +76,7 @@ class _StarWidgetState extends State<StarWidget> {
                       .toList()[0]
                       .toString(),
                   respuestaTexto: 'hola',
-                  respuestaNumero: FFAppState().varStar,
+                  respuestaNumero: 4.0,
                   codigo: 999980,
                 );
                 if (!(_model.apiResultp4o?.succeeded ?? true)) {
