@@ -533,15 +533,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                                 _model.textController.text,
                                             codigo: 1999987,
                                             preguntaId:
-                                                (PreguntaTextoCall.preguntaId(
-                                              buttonPreguntaTextoResponse
-                                                  .jsonBody,
-                                            ) as List)
-                                                    .map<String>(
-                                                        (s) => s.toString())
-                                                    .toList()
-                                                    .first
-                                                    .toString(),
+                                                '8b4c564a-5dcc-4a3c-b647-70e089c2ec23',
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
