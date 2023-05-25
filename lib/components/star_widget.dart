@@ -41,50 +41,103 @@ class _StarWidgetState extends State<StarWidget> {
   Widget build(BuildContext context) {
     context.watch<FFAppState>();
 
-    return Column(
-      mainAxisSize: MainAxisSize.max,
-      children: [
-        FutureBuilder<ApiCallResponse>(
-          future: FFAppState().polo(
-            requestFn: () => RespuestasCall.call(
-              respuestaNumero: _model.ratingBarValue?.toString(),
-            ),
-          ),
-          builder: (context, snapshot) {
-            // Customize what your widget looks like when it's loading.
-            if (!snapshot.hasData) {
-              return Center(
-                child: SizedBox(
-                  width: 50.0,
-                  height: 50.0,
-                  child: CircularProgressIndicator(
-                    color: FlutterFlowTheme.of(context).primary,
-                  ),
-                ),
-              );
-            }
-            final ratingBarRespuestasResponse = snapshot.data!;
-            return RatingBar.builder(
-              onRatingUpdate: (newValue) {
-                setState(() => _model.ratingBarValue = newValue);
-                setState(() {
-                  FFAppState().numStar = _model.ratingBarValue!;
-                });
-              },
-              itemBuilder: (context, index) => Icon(
-                Icons.star_rounded,
-                color: FlutterFlowTheme.of(context).tertiary,
+    return FutureBuilder<ApiCallResponse>(
+      future: PreguntasCall.call(
+        areaId: FFAppState().idAreaQr,
+      ),
+      builder: (context, snapshot) {
+        // Customize what your widget looks like when it's loading.
+        if (!snapshot.hasData) {
+          return Center(
+            child: SizedBox(
+              width: 50.0,
+              height: 50.0,
+              child: CircularProgressIndicator(
+                color: FlutterFlowTheme.of(context).primary,
               ),
-              direction: Axis.horizontal,
-              initialRating: _model.ratingBarValue ??= 1.0,
-              unratedColor: FlutterFlowTheme.of(context).accent3,
-              itemCount: 5,
-              itemSize: 30.0,
-              glowColor: FlutterFlowTheme.of(context).tertiary,
-            );
-          },
-        ),
-      ],
+            ),
+          );
+        }
+        final columnPreguntasResponse = snapshot.data!;
+        return Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            FutureBuilder<ApiCallResponse>(
+              future: FFAppState().polo(
+                requestFn: () => RespuestasCall.call(
+                  respuestaNumero: _model.ratingBarValue?.toString(),
+                ),
+              ),
+              builder: (context, snapshot) {
+                // Customize what your widget looks like when it's loading.
+                if (!snapshot.hasData) {
+                  return Center(
+                    child: SizedBox(
+                      width: 50.0,
+                      height: 50.0,
+                      child: CircularProgressIndicator(
+                        color: FlutterFlowTheme.of(context).primary,
+                      ),
+                    ),
+                  );
+                }
+                final ratingBarRespuestasResponse = snapshot.data!;
+                return RatingBar.builder(
+                  onRatingUpdate: (newValue) async {
+                    setState(() => _model.ratingBarValue = newValue);
+                    setState(() {
+                      FFAppState().numStar = _model.ratingBarValue!;
+                    });
+                    _model.apiResult12f = await RespuestasCall.call(
+                      codigo: 999998,
+                      respuestaNumero: FFAppState().numStar.toString(),
+                      preguntaId: (PreguntasCall.idPreguntaN(
+                        columnPreguntasResponse.jsonBody,
+                      ) as List)
+                          .map<String>((s) => s.toString())
+                          .toList()
+                          .where((e) => e)
+                          .toList()
+                          .length
+                          .toString(),
+                    );
+                    if (!(_model.apiResult12f?.succeeded ?? true)) {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: Text('f'),
+                            content: Text('f'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+
+                    setState(() {});
+                  },
+                  itemBuilder: (context, index) => Icon(
+                    Icons.star_rounded,
+                    color: FlutterFlowTheme.of(context).tertiary,
+                  ),
+                  direction: Axis.horizontal,
+                  initialRating: _model.ratingBarValue ??= 1.0,
+                  unratedColor: FlutterFlowTheme.of(context).accent3,
+                  itemCount: 5,
+                  itemSize: 30.0,
+                  glowColor: FlutterFlowTheme.of(context).tertiary,
+                );
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

@@ -621,9 +621,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   FutureBuilder<ApiCallResponse>(
-                                    future: FFAppState().polo(
-                                      requestFn: () => RespuestasCall.call(),
-                                    ),
+                                    future: PreguntaTextoCall.call(),
                                     builder: (context, snapshot) {
                                       // Customize what your widget looks like when it's loading.
                                       if (!snapshot.hasData) {
@@ -639,7 +637,7 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                           ),
                                         );
                                       }
-                                      final buttonRespuestasResponse =
+                                      final buttonPreguntaTextoResponse =
                                           snapshot.data!;
                                       return FFButtonWidget(
                                         onPressed: () async {
@@ -648,6 +646,16 @@ class _FormularioWidgetState extends State<FormularioWidget> {
                                             respuestaTexto:
                                                 _model.textController.text,
                                             codigo: 1999987,
+                                            preguntaId:
+                                                (PreguntaTextoCall.preguntaId(
+                                              buttonPreguntaTextoResponse
+                                                  .jsonBody,
+                                            ) as List)
+                                                    .map<String>(
+                                                        (s) => s.toString())
+                                                    .toList()
+                                                    .first
+                                                    .toString(),
                                           );
                                           if ((_model.apiResultadoRespuestas
                                                   ?.succeeded ??
